@@ -7,12 +7,16 @@
 ul {
 	list-style-type: none;
 }
+.highlight {
+	background-color: yellow;
+}
 </style>
 </head>
 <body>
 
 <ul id="players">
 </ul>
+
 
 <script>
 	var players = [
@@ -23,11 +27,17 @@ ul {
 			{name: "five"},
 		];
 	var playerList = document.getElementById('players');
-	
+
 	players.forEach(function(player, index){
 		var playerNameElement = document.createTextNode(player.name);
 		var listItemElement = document.createElement('li');
 		listItemElement.appendChild(playerNameElement);
+		listItemElement.id = player.name;
+
+		listItemElement.onclick = function () {
+			listItemElement.classList.toggle("highlight");
+		};
+
 		playerList.appendChild(listItemElement);
 	});
 </script>
