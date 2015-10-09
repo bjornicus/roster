@@ -7,7 +7,7 @@
 ul {
 	list-style-type: none;
 }
-.highlight {
+.selected {
 	background-color: yellow;
 }
 </style>
@@ -26,6 +26,9 @@ ul {
 			{name: "four"}, 
 			{name: "five"},
 		];
+
+	var selectedPlayer = null;
+
 	var playerList = document.getElementById('players');
 
 	players.forEach(function(player, index){
@@ -35,7 +38,12 @@ ul {
 		listItemElement.id = player.name;
 
 		listItemElement.onclick = function () {
-			listItemElement.classList.toggle("highlight");
+
+				playerList.removeChild(this);
+				playerList.insertBefore(this, playerList.firstChild);
+			selectedPlayer = listItemElement;
+			listItemElement.classList.toggle("selected");
+			selectedPlayer = !selectedPlayer;
 		};
 
 		playerList.appendChild(listItemElement);
