@@ -12,16 +12,24 @@ ul {
 <body>
 
 <ul id="players">
-	<li>One</li>
-	<li>Two</li>
-	<li>Thre</li>
-	<li>Four</li>
-	<li>Five</li>
 </ul>
 
 <script>
+	var players = [
+			{name: "one"}, 
+			{name: "two"}, 
+			{name: "three"}, 
+			{name: "four"}, 
+			{name: "five"},
+		];
 	var playerList = document.getElementById('players');
-	playerList.appendChild(document.createElement('li').appendChild(document.createTextNode('Six')));
+	
+	players.forEach(function(player, index){
+		var playerNameElement = document.createTextNode(player.name);
+		var listItemElement = document.createElement('li');
+		listItemElement.appendChild(playerNameElement);
+		playerList.appendChild(listItemElement);
+	});
 </script>
 
 </body>
