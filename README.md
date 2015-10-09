@@ -1,2 +1,2 @@
 # roster
-app for managing my soccer roster and tracking substitutions
+App for managing my soccer roster and tracking substitution order.
