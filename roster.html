@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Roster</title>
+
+<style>
+ul {
+	list-style-type: none;
+}
+</style>
+</head>
+<body>
+
+<ul id="players">
+	<li>One</li>
+	<li>Two</li>
+	<li>Thre</li>
+	<li>Four</li>
+	<li>Five</li>
+</ul>
+
+<script>
+	var playerList = document.getElementById('players');
+	playerList.appendChild(document.createElement('li').appendChild(document.createTextNode('Six')));
+</script>
+
+</body>
+</html>
