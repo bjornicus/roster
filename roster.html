@@ -10,13 +10,9 @@ body {
 ul {
 	padding: 0;
 	list-style-type: none;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
 	height: 90vh;
 }
 li {
-	flex-grow: 1;
 	text-align: center;
 	font-size: calc(90vh/16);
 	border: 3px solid blue;
@@ -36,14 +32,14 @@ li:nth-child(-n+3){
 
 <script>
 	var players = [
-			{name: "Iris"}, 
-			{name: "Fiona"}, 
-			{name: "Jeeyeh"}, 
-			{name: "Olivia"}, 
-			{name: "Rebecca"},
-			{name: "Shelby"},
-			{name: "Grace"},
-			{name: "Sophia"}
+            {name: "Fiona", time: 0}, 
+            {name: "Iris", time: 0}, 
+            {name: "Jeeyeh", time: 0}, 
+            {name: "Olivia", time: 0}, 
+			{name: "Rebecca", time: 0},
+			{name: "Shelby", time: 0},
+			{name: "Grace", time: 0},
+			{name: "Sophia", time: 0}
 		];
 
 	var playerList = document.getElementById('players');
@@ -51,8 +47,12 @@ li:nth-child(-n+3){
 	players.forEach(function(player, index){
 		var playerNameElement = document.createTextNode(player.name);
 		var listItemElement = document.createElement('li');
-		listItemElement.appendChild(playerNameElement);
-		listItemElement.id = player.name;
+        listItemElement.appendChild(playerNameElement);
+        listItemElement.id = player.name;
+
+        var subButton = document.createElement('button');
+        subButton.appendChild(document.createTextNode('sub'));
+        listItemElement.appendChild(subButton);
 
 		listItemElement.onclick = function () {
 			playerList.removeChild(this);
