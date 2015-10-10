@@ -6,9 +6,16 @@
 <style>
 ul {
 	list-style-type: none;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	height: 100vh;
 }
-.selected {
-	background-color: yellow;
+li {
+	flex-grow: 1;
+	text-align: center;
+	font-size: 3em;
+	border: 3px solid blue;
 }
 li:nth-child(-n+3){
 	background-color: green;
