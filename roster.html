@@ -40,7 +40,7 @@ var stopwatch = function() {
     var lapTime = 0;    // Time on the clock when last stopped in milliseconds
 
     var now = function() {
-            return (new Date()).getTime(); 
+            return (new Date()).getTime()/1000; 
         }; 
 
     // Public methods
@@ -63,7 +63,7 @@ var stopwatch = function() {
 
     // Duration
     this.time = function() {
-            return (lapTime + (startAt ? now() - startAt : 0))/1000; 
+            return (lapTime + (startAt ? now() - startAt : 0)); 
         };
 };
 
@@ -86,63 +86,65 @@ function formatTime(time) {
     return newTime;
 }
 
-function start() {
-    clocktimer = setInterval("update()", 1000);
-    x.start();
+function startTimer() {
+    clocktimer = setInterval(function() {
+        players.forEach(function (player){
+            if (player.update){
+                player.update();
+            }
+        })
+    }, 1000);
 }
 
-function stop() {
-    x.stop();
+function stopTimer() {
     clearInterval(clocktimer);
 }
 
-function reset() {
-    stop();
-    x.reset();
-    update();
-}
+var players = ["Fiona", "Iris", "Jeeyeh", "Olivia", "Rebecca", "Shelby", "Grace", "Sophia"].map(function (playerName){
+    return {name: playerName, timer: new stopwatch(), playing: false};
+})
 
-	var players = ["Fiona", "Iris", "Jeeyeh", "Olivia", "Rebecca", "Shelby", "Grace", "Sophia"].map(function (playerName){
-        return {name: playerName, timer: new stopwatch(), playing: false};
-    })
+var playerList = document.getElementById('players');
+var subsList = document.getElementById('subs');
 
-	var playerList = document.getElementById('players');
-    var subsList = document.getElementById('subs');
+players.forEach(function(player){
+	var playerNameElement = document.createTextNode(player.name);
+	var listItemElement = document.createElement('li');
+    listItemElement.appendChild(playerNameElement);
+    listItemElement.id = player.name;
 
-	players.forEach(function(player, index){
-		var playerNameElement = document.createTextNode(player.name);
-		var listItemElement = document.createElement('li');
-        listItemElement.appendChild(playerNameElement);
-        listItemElement.id = player.name;
+    var subButton = document.createElement('button');
+    subButton.appendChild(document.createTextNode('sub'));
+    listItemElement.appendChild(subButton);
 
-        var subButton = document.createElement('button');
-        subButton.appendChild(document.createTextNode('sub'));
-        listItemElement.appendChild(subButton);
+    var timeLabel = document.createElement('div');
+    listItemElement.appendChild(timeLabel);
 
-        var timeLabel = document.createElement('div');
-        listItemElement.appendChild(timeLabel);
+	subButton.onclick = function () {
+        if (player.playing){
+            playerList.removeChild(listItemElement);
+            subsList.appendChild(listItemElement);
 
-        var clocktimer;
+            player.timer.reset();
+            timeLabel.innerHTML = '';
+            player.update = null;
+        }
+        else {
+            subsList.removeChild(listItemElement);
+            playerList.insertBefore(listItemElement, playerList.firstChild);
 
-		subButton.onclick = function () {
-            if (player.playing){
-                playerList.removeChild(listItemElement);
-                subsList.appendChild(listItemElement);
-                player.timer.reset();
-                timeLabel.innerHTML = '';
-                clearInterval(clocktimer);
-            }
-            else {
-                subsList.removeChild(listItemElement);
-                playerList.insertBefore(listItemElement, playerList.firstChild);
-                clocktimer = setInterval(function(){ timeLabel.innerHTML = formatTime(player.timer.time()); }, 1000);
-                player.timer.start();
-            }
-            player.playing = !player.playing;
-		};
+            player.timer.start();
+            player.update = function () {
+                timeLabel.innerHTML = formatTime(player.timer.time()); 
+            };
+        }
+        player.playing = !player.playing;
+	};
 
-		subsList.appendChild(listItemElement);
-	});
+	subsList.appendChild(listItemElement);
+});
+
+startTimer();
 </script>
 
 </body>
