@@ -10,6 +10,10 @@ ul {
 .selected {
 	background-color: yellow;
 }
+li:nth-child(-n+3){
+	background-color: green;
+	color: white;
+}
 </style>
 </head>
 <body>
@@ -27,8 +31,6 @@ ul {
 			{name: "five"},
 		];
 
-	var selectedPlayer = null;
-
 	var playerList = document.getElementById('players');
 
 	players.forEach(function(player, index){
@@ -38,12 +40,8 @@ ul {
 		listItemElement.id = player.name;
 
 		listItemElement.onclick = function () {
-
-				playerList.removeChild(this);
-				playerList.insertBefore(this, playerList.firstChild);
-			selectedPlayer = listItemElement;
-			listItemElement.classList.toggle("selected");
-			selectedPlayer = !selectedPlayer;
+			playerList.removeChild(this);
+			playerList.insertBefore(this, playerList.firstChild);
 		};
 
 		playerList.appendChild(listItemElement);
