@@ -31,16 +31,43 @@ li:nth-child(-n+3){
 
 
 <script>
-	var players = [
-            {name: "Fiona", time: 0}, 
-            {name: "Iris", time: 0}, 
-            {name: "Jeeyeh", time: 0}, 
-            {name: "Olivia", time: 0}, 
-			{name: "Rebecca", time: 0},
-			{name: "Shelby", time: 0},
-			{name: "Grace", time: 0},
-			{name: "Sophia", time: 0}
-		];
+
+var stopwatch = function() {
+    // Private vars
+    var startAt = 0;    // Time of last start / resume. (0 if not running)
+    var lapTime = 0;    // Time on the clock when last stopped in milliseconds
+
+    var now = function() {
+            return (new Date()).getTime(); 
+        }; 
+
+    // Public methods
+    // Start or resume
+    this.start = function() {
+            startAt = startAt ? startAt : now();
+        };
+
+    // Stop or pause
+    this.stop = function() {
+            // If running, update elapsed time otherwise keep it
+            lapTime = startAt ? lapTime + now() - startAt : lapTime;
+            startAt = 0; // Paused
+        };
+
+    // Reset
+    this.reset = function() {
+            lapTime = startAt = 0;
+        };
+
+    // Duration
+    this.time = function() {
+            return lapTime + (startAt ? now() - startAt : 0); 
+        };
+};
+
+	var players = ["Fiona", "Iris", "Jeeyeh", "Olivia", "Rebecca", "Shelby", "Grace", "Sophia"].map(function (playerName){
+        return {name: playerName, timer: new stopwatch(), playing: false};
+    })
 
 	var playerList = document.getElementById('players');
 
