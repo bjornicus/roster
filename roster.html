@@ -29,6 +29,7 @@ li {
 <body>
 
 <ul id="players"></ul>
+next
 <ul id="subs"></ul>
 
 <script>
@@ -62,9 +63,44 @@ var stopwatch = function() {
 
     // Duration
     this.time = function() {
-            return lapTime + (startAt ? now() - startAt : 0); 
+            return (lapTime + (startAt ? now() - startAt : 0))/1000; 
         };
 };
+
+var clocktimer;
+
+function pad(num, size) {
+    var s = "0000" + num;
+    return s.substr(s.length - size);
+}
+
+function formatTime(time) {
+    var m = s = 0;
+    var newTime = '';
+
+    m = Math.floor( time / 60 );
+    time = time % 60;
+    s = Math.floor( time );
+
+    newTime = pad(m, 1) + ':' + pad(s, 2);
+    return newTime;
+}
+
+function start() {
+    clocktimer = setInterval("update()", 1000);
+    x.start();
+}
+
+function stop() {
+    x.stop();
+    clearInterval(clocktimer);
+}
+
+function reset() {
+    stop();
+    x.reset();
+    update();
+}
 
 	var players = ["Fiona", "Iris", "Jeeyeh", "Olivia", "Rebecca", "Shelby", "Grace", "Sophia"].map(function (playerName){
         return {name: playerName, timer: new stopwatch(), playing: false};
@@ -83,14 +119,24 @@ var stopwatch = function() {
         subButton.appendChild(document.createTextNode('sub'));
         listItemElement.appendChild(subButton);
 
+        var timeLabel = document.createElement('div');
+        listItemElement.appendChild(timeLabel);
+
+        var clocktimer;
+
 		subButton.onclick = function () {
             if (player.playing){
                 playerList.removeChild(listItemElement);
                 subsList.appendChild(listItemElement);
+                player.timer.reset();
+                timeLabel.innerHTML = '';
+                clearInterval(clocktimer);
             }
             else {
                 subsList.removeChild(listItemElement);
                 playerList.insertBefore(listItemElement, playerList.firstChild);
+                clocktimer = setInterval(function(){ timeLabel.innerHTML = formatTime(player.timer.time()); }, 1000);
+                player.timer.start();
             }
             player.playing = !player.playing;
 		};
