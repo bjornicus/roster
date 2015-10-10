@@ -10,7 +10,6 @@ body {
 ul {
 	padding: 0;
 	list-style-type: none;
-	height: 90vh;
 }
 li {
 	text-align: center;
@@ -18,17 +17,19 @@ li {
 	border: 3px solid blue;
 	margin: 5px;
 }
-li:nth-child(-n+3){
+#players li{
 	background-color: green;
 	color: white;
+}
+#subs li {
+    background-color: yellow;
 }
 </style>
 </head>
 <body>
 
-<ul id="players">
-</ul>
-
+<ul id="players"></ul>
+<ul id="subs"></ul>
 
 <script>
 
@@ -70,6 +71,7 @@ var stopwatch = function() {
     })
 
 	var playerList = document.getElementById('players');
+    var subsList = document.getElementById('subs');
 
 	players.forEach(function(player, index){
 		var playerNameElement = document.createTextNode(player.name);
@@ -82,11 +84,11 @@ var stopwatch = function() {
         listItemElement.appendChild(subButton);
 
 		listItemElement.onclick = function () {
-			playerList.removeChild(this);
+			subsList.removeChild(this);
 			playerList.insertBefore(this, playerList.firstChild);
 		};
 
-		playerList.appendChild(listItemElement);
+		subsList.appendChild(listItemElement);
 	});
 </script>
 
