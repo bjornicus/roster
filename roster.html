@@ -11,6 +11,9 @@ ul {
 	padding: 0;
 	list-style-type: none;
 }
+#clock-readout {
+    font-size: calc(90vh/16);
+}
 button {
     font-size: calc(90vh/16);
 }
@@ -30,7 +33,11 @@ li {
 </style>
 </head>
 <body>
-
+<div class="clock">
+    <button class="start" onclick="startGameClock()">Start</button>
+    <span id="clock-readout"></span>
+    <button class="reset" onclick="resetGameClock()">Reset</button>
+</div>
 <ul id="players"></ul>
 next
 <ul id="subs"></ul>
@@ -85,7 +92,7 @@ function formatTime(time) {
     time = time % 60;
     s = Math.floor( time );
 
-    newTime = pad(m, 1) + ':' + pad(s, 2);
+    newTime = pad(m, 2) + ':' + pad(s, 2);
     return newTime;
 }
 
@@ -95,13 +102,25 @@ function startTimer() {
             if (player.update){
                 player.update();
             }
-        })
+        });
+        gameClockLabel.innerHTML = formatTime(gameClock.time());
     }, 1000);
 }
 
 function stopTimer() {
     clearInterval(clocktimer);
 }
+
+function startGameClock() {
+    gameClock.start();
+}
+
+function resetGameClock() {
+    gameClock.reset();
+}
+
+var gameClockLabel = document.getElementById('clock-readout');
+var gameClock = new stopwatch();
 
 var players = ["Fiona", "Iris", "Jeeyeh", "Olivia", "Rebecca", "Shelby", "Grace", "Sophia"].map(function (playerName){
     return {name: playerName, timer: new stopwatch(), playing: false};
