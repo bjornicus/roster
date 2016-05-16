@@ -1,22 +1,15 @@
 import React, { PropTypes } from 'react';
-import { connect } from 'react-redux';
 
-const BaseCounter = ({ player, onSubClick, onMinusClick }) => (
+const Player = ({ player, onSubClick}) => (
   <div>
-      <button onClick={onSubClick}>SUB</button>
+      <button onClick={() => onSubClick(player.id)}>SUB</button>
       {player.name} - {player.isPlaying ? 'playing': 'not playing' }
   </div>
 );
 
-BaseCounter.propTypes = {
+Player.propTypes = {
   player: PropTypes.object.isRequired,
   onSubClick: PropTypes.func.isRequired,
 };
 
-const mapDispatchToProps = dispatch => {
-  return {
-    onSubClick: () => dispatch({ type: 'SUB_PLAYER', playerId: player.id }),
-  };
-};
-
-export default connect(null, mapDispatchToProps)(BaseCounter)
+export default Player

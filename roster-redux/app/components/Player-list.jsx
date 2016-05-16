@@ -3,21 +3,28 @@ import { connect } from 'react-redux';
 import Player from './Player';
 
 
-const PlayerList = ({ players }) => (
+const PlayerList = ({ players, onSubClick }) => (
   <div>
     <h2>Players:</h2>
     <ul>
-      {players.map( p => <li><Player player={p} /></li> )}
+      {players.map( p => <li><Player player={p} onSubClick={onSubClick} /></li> )}
     </ul>
   </div>
 );
 
 PlayerList.propTypes = {
-  players: PropTypes.object.isRequired
+  players: PropTypes.object.isRequired,
+  onSubClick: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => {
   return { players: state.present.players };
 };
 
-export default connect(mapStateToProps)(PlayerList)
+const mapDispatchToProps = dispatch => {
+  return {
+    onSubClick: (playerId) => dispatch({ type: 'SUB_PLAYER', playerId: playerId }),
+  };
+};
+
+export default connect(mapStateToProps,mapDispatchToProps)(PlayerList)
