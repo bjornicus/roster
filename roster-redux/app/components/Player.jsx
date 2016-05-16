@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 const BaseCounter = ({ player, onSubClick, onMinusClick }) => (
   <div>
       <button onClick={onSubClick}>SUB</button>
-      {player.name} - {player.isPlaying}
+      {player.name} - {player.isPlaying ? 'playing': 'not playing' }
   </div>
 );
 
