@@ -7,6 +7,8 @@ exports.config = {
   },
 
   plugins: {
-    babel: { presets: ['es2015', 'react'] }
+    babel: { 
+        presets: ['es2015', 'react'],
+        plugins: ["transform-object-rest-spread"] }
   }
 };

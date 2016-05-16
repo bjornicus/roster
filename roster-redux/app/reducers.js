@@ -5,7 +5,7 @@ function playerReducer(state, action) {
         case 'ADD_PLAYER':
             return {id: nextId++, name: action.playerName, isPlaying: false};
         case 'SUB_PLAYER': 
-            return Object.apply({}, state, {isPlaying: !state.isPlaying});
+            return { ...state, isPlaying: !state.isPlaying };
         default:
             return state
     }
