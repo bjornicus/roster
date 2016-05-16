@@ -7,7 +7,7 @@ const PlayerList = ({ players }) => (
   <div>
     <h2>Players:</h2>
     <ul>
-      {players.map( p => p.name)}
+      {players.map( p => <li><Player player={p} /></li> )}
     </ul>
   </div>
 );
@@ -17,7 +17,6 @@ PlayerList.propTypes = {
 };
 
 const mapStateToProps = state => {
-  debugger;
   return { players: state.present.players };
 };
 
