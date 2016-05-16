@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 const BaseCounter = ({ count, onPlusClick, onMinusClick }) => (
   <div>
-    <h2>Redux Counter:</h2>
+    <h2>Player:</h2>
     <p>
       <button onClick={onMinusClick}>-</button>
       {count}
