@@ -2,10 +2,11 @@ import ReactDOM from 'react-dom';
 import React from 'react';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
+import undoable from 'redux-undo';
 import counterApp from './reducers';
 import App from 'components/App';
 
-const store = createStore(counterApp, module.hot && module.hot.data && module.hot.data.counter || 0);
+const store = createStore(undoable(counterApp), module.hot && module.hot.data && module.hot.data.counter || { players : [{name: 'alice'}, {name: 'bob'} ]});
 
 if (module.hot) {
   module.hot.accept('./reducers', () => {
@@ -15,7 +16,7 @@ if (module.hot) {
 
   module.hot.dispose((data) => {
     data.counter = store.getState();
-    [].slice.apply(document.querySelector('#app').children).forEach(function(c) { c.remove() });
+    [].slice.apply(document.querySelector('#app').children).forEach(function(c) { c.remove()});
   });
 }
 
