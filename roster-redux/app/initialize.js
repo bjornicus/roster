@@ -9,7 +9,7 @@ import App from 'components/App';
 const defaultState = { 
   players : [
     {id: 1, name: 'alice', isPlaying: false}, 
-    {id: 2, name: 'bob', isPlaying: true} 
+    {id: 2, name: 'bobz', isPlaying: true} 
     ]
   };
 const store = createStore(undoable(counterApp), module.hot && module.hot.data && module.hot.data.counter || defaultState);
