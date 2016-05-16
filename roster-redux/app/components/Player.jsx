@@ -3,9 +3,8 @@ import { connect } from 'react-redux';
 
 const BaseCounter = ({ player, onPlusClick, onMinusClick }) => (
   <div>
-      <button onClick={onMinusClick}>-</button>
-      {player.name}
-      <button onClick={onPlusClick}>+</button>
+      <button onClick={onMinusClick}>SUB</button>
+      {player.name} - {player.isPlaying}
   </div>
 );
 
