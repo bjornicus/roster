@@ -6,13 +6,12 @@ import undoable from 'redux-undo';
 import counterApp from './reducers';
 import App from 'components/App';
 
-const defaultState = { 
-  players : [
-    {id: 1, name: 'alice', isPlaying: false}, 
-    {id: 2, name: 'bobz', isPlaying: true} 
-    ]
-  };
-const store = createStore(undoable(counterApp), module.hot && module.hot.data && module.hot.data.counter || defaultState);
+const defaultState = { players : [] };
+const store = createStore(
+  undoable(counterApp), 
+  module.hot && module.hot.data && module.hot.data.counter || defaultState,
+  window.devToolsExtension ? window.devToolsExtension() : undefined
+  );
 
 if (module.hot) {
   module.hot.accept('./reducers', () => {

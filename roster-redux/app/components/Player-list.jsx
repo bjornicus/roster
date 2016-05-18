@@ -13,7 +13,7 @@ const PlayerList = ({ players, onSubClick }) => (
 );
 
 PlayerList.propTypes = {
-  players: PropTypes.object.isRequired,
+  players: PropTypes.array.isRequired,
   onSubClick: PropTypes.func.isRequired
 };
 
