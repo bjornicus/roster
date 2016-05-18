@@ -11,6 +11,9 @@ ul {
 button {
     font-size: calc(90vh/16);
 }
+input { 
+    font-size: calc(90vh/16);
+}
 li {
     text-align: center;
     font-size: calc(90vh/16);

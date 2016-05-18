@@ -14,12 +14,12 @@ const PlayerList = ({ players, onAddPlayer }) => {
         onAddPlayer(input.value)
         input.value = ''
       }}>
+        <button type="submit">
+          &nbsp;+&nbsp; 
+        </button>
         <input ref={node => {
           input = node
         }} />
-        <button type="submit">
-          Add Player
-        </button>
       </form>
     </div>
   );
