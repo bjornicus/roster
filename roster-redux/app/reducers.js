@@ -1,9 +1,7 @@
-let nextId = 0;
-
 function playerReducer(state, action) { 
     switch (action.type) {
         case 'ADD_PLAYER':
-            return {id: nextId++, name: action.playerName, isPlaying: false};
+            return {id: action.playerId, name: action.playerName, isPlaying: false};
         case 'SUB_PLAYER': 
            if (action.playerId !== state.id){
                 return state;

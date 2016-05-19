@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 
+let nextPlayerId = 0;
 
 const PlayerList = ({ players, onAddPlayer }) => {
   let input;
@@ -11,7 +12,7 @@ const PlayerList = ({ players, onAddPlayer }) => {
         if (!input.value.trim()) {
           return
         }
-        onAddPlayer(input.value)
+        onAddPlayer(input.value, nextPlayerId++)
         input.value = ''
       }}>
         <button type="submit">
@@ -36,7 +37,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onAddPlayer: (playerName) => dispatch({ type: 'ADD_PLAYER', playerName: playerName }),
+    onAddPlayer: (playerName, playerId) => dispatch({ type: 'ADD_PLAYER', playerName: playerName, playerId: playerId}),
   };
 };
 
