@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 let nextPlayerId = 0;
 
-const PlayerList = ({ players, onAddPlayer }) => {
+const AddPlayer = ({ players, onAddPlayer }) => {
   let input;
   return (
     <div>
@@ -26,7 +26,7 @@ const PlayerList = ({ players, onAddPlayer }) => {
   );
 }
 
-PlayerList.propTypes = {
+AddPlayer.propTypes = {
   players: PropTypes.object.isRequired,
   onAddPlayer: PropTypes.func.isRequired
 };
@@ -41,4 +41,4 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(mapStateToProps,mapDispatchToProps)(PlayerList)
+export default connect(mapStateToProps,mapDispatchToProps)(AddPlayer)

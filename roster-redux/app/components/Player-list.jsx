@@ -7,7 +7,7 @@ const PlayerList = ({ players, onSubClick }) => (
   <div>
     <h2>Players:</h2>
     <ul>
-      {players.map( p => <li><Player player={p} onSubClick={onSubClick} /></li> )}
+      {players.map( p => <li><Player key={p.id} player={p} onSubClick={onSubClick} /></li> )}
     </ul>
   </div>
 );
