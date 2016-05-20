@@ -8,26 +8,30 @@ export default function() {
             return (new Date()).getTime()/1000; 
         }; 
 
+    this.isRunning = function() {
+        return startAt != 0;
+    };
+
     // Public methods
     // Start or resume
     this.start = function() {
-            startAt = startAt ? startAt : now();
-        };
+        startAt = startAt ? startAt : now();
+    };
 
     // Stop or pause
     this.pause = function() {
-            // If running, update elapsed time otherwise keep it
-            lapTime = startAt ? lapTime + now() - startAt : lapTime;
-            startAt = 0; // Paused
-        };
+        // If running, update elapsed time otherwise keep it
+        lapTime = startAt ? lapTime + now() - startAt : lapTime;
+        startAt = 0; // Paused
+    };
 
     // Reset
     this.reset = function() {
-            lapTime = startAt = 0;
-        };
+        lapTime = startAt = 0;
+    };
 
     // Duration
     this.time = function() {
-            return (lapTime + (startAt ? now() - startAt : 0)); 
-        };
+        return (lapTime + (startAt ? now() - startAt : 0)); 
+    };
 };

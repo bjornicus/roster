@@ -7,7 +7,7 @@ import counterApp from './reducers';
 import App from 'components/App';
 import gameClock from './game-clock';
 
-const defaultState = { players : [], clock : {currentTime: 0, isRunning: false} };
+const defaultState = { players : [], clock : {currentTime: 10, isRunning: false} };
 const store = createStore(
   undoable(counterApp, { filter: excludeAction('UPDATE_TIME') }), 
   module.hot && module.hot.data && module.hot.data.counter || defaultState,
@@ -34,8 +34,20 @@ const load = () => {
   }, 1000);
 
   function controlClock(){
-
+    let state = store.getState().present;
+    // need make sure the clock has the state given by state.clock
+    if (state.clock.currentTime = 0){
+      clock.reset();
+    }
+    else if (state.clock.isRunning && !clock.isRunning()){
+      clock.start();
+    }
+    else if (!state.clock.isRunning && clock.isRunning() ){
+      clock.pause();
+    }
   }
+
+  store.subscribe(controlClock);
 
   ReactDOM.render(
     <Provider store={store}>
