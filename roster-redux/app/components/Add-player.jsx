@@ -26,11 +26,6 @@ const AddPlayer = ({ players, onAddPlayer }) => {
   );
 }
 
-AddPlayer.propTypes = {
-  players: PropTypes.object.isRequired,
-  onAddPlayer: PropTypes.func.isRequired
-};
-
 const mapStateToProps = state => {
   return { players: state.present.players };
 };
