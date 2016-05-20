@@ -2,14 +2,14 @@ import ReactDOM from 'react-dom';
 import React from 'react';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
-import undoable from 'redux-undo';
+import undoable, { includeAction, excludeAction } from 'redux-undo';
 import counterApp from './reducers';
 import App from 'components/App';
 import gameClock from './game-clock';
 
 const defaultState = { players : [], currentTime: 0 };
 const store = createStore(
-  undoable(counterApp), 
+  undoable(counterApp, { filter: excludeAction('UPDATE_TIME') }), 
   module.hot && module.hot.data && module.hot.data.counter || defaultState,
   window.devToolsExtension ? window.devToolsExtension() : undefined
   );
@@ -27,6 +27,12 @@ if (module.hot) {
 }
 
 const load = () => {
+  let clock = new gameClock();
+  clock.start();
+  setInterval(function() {
+    store.dispatch({type: 'UPDATE_TIME', currentTime: clock.time()});
+  }, 1000);
+
   ReactDOM.render(
     <Provider store={store}>
       <App />
