@@ -7,7 +7,8 @@ export default class App extends React.Component {
     return (
       <div id="content">
         <AddPlayer />
-        <PlayerList />
+        <PlayerList heading="Playing" playerFilter={ p => p.isPlaying }/>
+        <PlayerList heading="Substitutes" playerFilter={ p => !p.isPlaying }/>
       </div>
     );
   }
