@@ -1,3 +1,5 @@
+import { combineReducers } from 'redux'
+
 function playerReducer(state, action) { 
     switch (action.type) {
         case 'ADD_PLAYER':
@@ -12,7 +14,7 @@ function playerReducer(state, action) {
     }
 }
 
-function playersReducer(state, action) {
+function players(state = [], action) {
     switch (action.type) {
         case 'ADD_PLAYER':
           return [
@@ -28,7 +30,11 @@ function playersReducer(state, action) {
       }
 }
 
-
-export default (state = { players : []}, action) => {
-    return {...state, players: playersReducer(state.players, action)}
+function currentTime(state = 0, action) {
+    if (action.type == 'UPDATE_TIME'){
+        return action.currentTime;
+    }
+    return state;
 }
+
+export default combineReducers({players, currentTime});

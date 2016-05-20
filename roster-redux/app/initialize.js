@@ -5,8 +5,9 @@ import { createStore } from 'redux';
 import undoable from 'redux-undo';
 import counterApp from './reducers';
 import App from 'components/App';
+import gameClock from './game-clock';
 
-const defaultState = { players : [] };
+const defaultState = { players : [], currentTime: 0 };
 const store = createStore(
   undoable(counterApp), 
   module.hot && module.hot.data && module.hot.data.counter || defaultState,
