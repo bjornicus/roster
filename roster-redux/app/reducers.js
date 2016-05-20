@@ -30,11 +30,18 @@ function players(state = [], action) {
       }
 }
 
-function currentTime(state = 0, action) {
-    if (action.type == 'UPDATE_TIME'){
-        return action.currentTime;
+function clock(state = { currentTime: 0, isRunning: false }, action) {
+    switch (action.type) {
+        case 'UPDATE_TIME':
+            return {...state, currentTime: action.currentTime}
+        case 'START_CLOCK':
+            return {...state, isRunning: true}
+        case 'STOP_CLOCK':
+            return {...state, isRunning: false}
+        case 'RESET_CLOCK':
+            return {...state, currentTime: 0 }
     }
     return state;
 }
 
-export default combineReducers({players, currentTime});
+export default combineReducers({players, clock});

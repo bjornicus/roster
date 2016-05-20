@@ -7,7 +7,7 @@ import counterApp from './reducers';
 import App from 'components/App';
 import gameClock from './game-clock';
 
-const defaultState = { players : [], currentTime: 0 };
+const defaultState = { players : [], clock : {currentTime: 0, isRunning: false} };
 const store = createStore(
   undoable(counterApp, { filter: excludeAction('UPDATE_TIME') }), 
   module.hot && module.hot.data && module.hot.data.counter || defaultState,
@@ -32,6 +32,10 @@ const load = () => {
   setInterval(function() {
     store.dispatch({type: 'UPDATE_TIME', currentTime: clock.time()});
   }, 1000);
+
+  function controlClock(){
+
+  }
 
   ReactDOM.render(
     <Provider store={store}>

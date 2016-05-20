@@ -15,7 +15,7 @@ const GameClock = ({ onStart, onStop, onReset, currentTime }) => {
 }
 
 const mapStateToProps = state => {
-  return { currentTime: state.present.currentTime };
+  return { currentTime: state.present.clock.currentTime };
 };
 
 const mapDispatchToProps = dispatch => {
