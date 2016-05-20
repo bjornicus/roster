@@ -7,7 +7,7 @@ const PlayerList = ({ heading, players, playerFilter, onSubClick }) => (
   <div>
     <h2>{heading}</h2>
     <ul>
-      {players.filter(playerFilter).map( p => <Player key={p.id} player={p} onSubClick={onSubClick} /> )}
+      {players.filter(playerFilter).map( p => <li key={p.id}><Player player={p} onSubClick={onSubClick} /></li> )}
     </ul>
   </div>
 );
