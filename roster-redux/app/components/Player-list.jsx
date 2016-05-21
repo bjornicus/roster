@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import Player from './Player';
 
 
-const PlayerList = ({ heading, players, playerFilter, onSubClick }) => (
+const PlayerList = ({ heading, players, playerFilter, onSubClick}) => (
   <div>
     <h2>{heading}</h2>
     <ul>
@@ -13,13 +13,20 @@ const PlayerList = ({ heading, players, playerFilter, onSubClick }) => (
 );
 
 const mapStateToProps = (state, ownProps) => {
-  return { players: state.players.present };
+  return { players: state.players.present, currentTime: state.clock.currentTime};
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    onSubClick: (playerId) => dispatch({ type: 'SUB_PLAYER', playerId: playerId }),
+    onSubClick: (playerId, currentTime) => dispatch({ type: 'SUB_PLAYER', playerId, currentTime }),
   };
 };
 
-export default connect(mapStateToProps,mapDispatchToProps)(PlayerList)
+function mergeProps(stateProps, dispatchProps, ownProps) {
+  return Object.assign({}, ownProps, {
+    players: stateProps.players,
+    onSubClick: (playerId) => dispatchProps.onSubClick(playerId, stateProps.currentTime)
+  })
+}
+
+export default connect(mapStateToProps, mapDispatchToProps, mergeProps)(PlayerList)

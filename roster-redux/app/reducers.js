@@ -9,7 +9,7 @@ function playerReducer(state, action) {
            if (action.playerId !== state.id){
                 return state;
             }
-            return { ...state, isPlaying: !state.isPlaying };
+            return { ...state, isPlaying: !state.isPlaying, lastSubTime: action.currentTime };
         default:
             return state
     }
