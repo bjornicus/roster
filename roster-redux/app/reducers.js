@@ -1,3 +1,4 @@
+import undoable from 'redux-undo';
 import { combineReducers } from 'redux'
 
 function playerReducer(state, action) { 
@@ -43,5 +44,7 @@ function clock(state = { currentTime: 0, isRunning: false }, action) {
     }
     return state;
 }
+
+players = undoable(players);
 
 export default combineReducers({players, clock});

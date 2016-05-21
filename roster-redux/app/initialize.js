@@ -2,14 +2,13 @@ import ReactDOM from 'react-dom';
 import React from 'react';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
-import undoable, { includeAction, excludeAction } from 'redux-undo';
 import counterApp from './reducers';
 import App from 'components/App';
 import gameClock from './game-clock';
 
-const defaultState = { players : [], clock : {currentTime: 10, isRunning: false} };
+const defaultState = { players : [], clock : {currentTime: 0, isRunning: false} };
 const store = createStore(
-  undoable(counterApp, { filter: excludeAction('UPDATE_TIME') }), 
+  counterApp, 
   module.hot && module.hot.data && module.hot.data.counter || defaultState,
   window.devToolsExtension ? window.devToolsExtension() : undefined
   );
@@ -29,11 +28,11 @@ if (module.hot) {
 const load = () => {
   let clock = new gameClock();
   setInterval(function() {
-    store.dispatch({type: 'UPDATE_TIME', currentTime: clock.time()});
+     store.dispatch({type: 'UPDATE_TIME', currentTime: clock.time()});
   }, 1000);
 
   function controlClock(){
-    let state = store.getState().present;
+    let state = store.getState();
     // need make sure the clock has the state given by state.clock
     if (state.clock.currentTime === 0){
       clock.reset();

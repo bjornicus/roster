@@ -13,7 +13,7 @@ const PlayerList = ({ heading, players, playerFilter, onSubClick }) => (
 );
 
 const mapStateToProps = (state, ownProps) => {
-  return { players: state.present.players };
+  return { players: state.players.present };
 };
 
 const mapDispatchToProps = dispatch => {

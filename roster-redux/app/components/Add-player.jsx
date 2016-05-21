@@ -27,7 +27,7 @@ const AddPlayer = ({ players, onAddPlayer }) => {
 }
 
 const mapStateToProps = state => {
-  return { players: state.present.players };
+  return { players: state.players.present };
 };
 
 const mapDispatchToProps = dispatch => {

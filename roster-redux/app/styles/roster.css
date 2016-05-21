@@ -5,7 +5,7 @@ ul {
     padding: 0;
     list-style-type: none;
 }
-#clock-readout {
+.clock {
     font-size: calc(90vh/16);
 }
 button {
