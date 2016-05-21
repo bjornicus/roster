@@ -28,7 +28,6 @@ if (module.hot) {
 
 const load = () => {
   let clock = new gameClock();
-  clock.start();
   setInterval(function() {
     store.dispatch({type: 'UPDATE_TIME', currentTime: clock.time()});
   }, 1000);
@@ -36,10 +35,10 @@ const load = () => {
   function controlClock(){
     let state = store.getState().present;
     // need make sure the clock has the state given by state.clock
-    if (state.clock.currentTime = 0){
+    if (state.clock.currentTime === 0){
       clock.reset();
     }
-    else if (state.clock.isRunning && !clock.isRunning()){
+    if (state.clock.isRunning && !clock.isRunning()){
       clock.start();
     }
     else if (!state.clock.isRunning && clock.isRunning() ){
