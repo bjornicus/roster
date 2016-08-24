@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 
 const Player = ({ player, onSubClick}) => (
   <div>
-    <button onClick={() => onSubClick(player.id)}>SUB</button>
+    <button type="button" className="btn btn-primary" onClick={() => onSubClick(player.id)}>SUB</button>
     {player.name} 
   </div>
 );

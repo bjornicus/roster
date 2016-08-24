@@ -1,28 +1,18 @@
-body {
-    margin: 0;
-}
 ul {
     padding: 0;
     list-style-type: none;
 }
-.clock {
-    font-size: calc(90vh/16);
-}
-button {
-    font-size: calc(90vh/16);
-}
-input { 
-    font-size: calc(90vh/16);
-}
-li {
+
+/*li {
     text-align: center;
     font-size: calc(90vh/16);
     border: 3px solid blue;
     margin: 5px;
     display: flex;
     justify-content: space-between;
-}
-#players li{
+}*/
+
+/*#players li{
     background-color: green;
     color: white;
 }
@@ -32,4 +22,4 @@ li {
 
 #players li.goal-keeper {
     background-color: red;
-}
+}*/
