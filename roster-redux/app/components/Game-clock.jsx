@@ -21,9 +21,9 @@ const GameClock = ({ onStart, onStop, onReset, currentTime }) => {
   let input;
   return (
     <div>
-        <button onClick={onStart}> Start </button>
-        <button onClick={onStop}> Pause </button>
-        <button onClick={onReset}> Reset </button>
+        <button className="btn btn-primary" onClick={onStart}> Start </button>
+        <button className="btn btn-primary" onClick={onStop}> Pause </button>
+        <button className="btn btn-primary" onClick={onReset}> Reset </button>
         <span className='clock'>{formatTime(currentTime)}</span>
     </div>
   );

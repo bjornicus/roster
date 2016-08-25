@@ -15,7 +15,7 @@ const AddPlayer = ({ players, onAddPlayer }) => {
         onAddPlayer(input.value, nextPlayerId++)
         input.value = ''
       }}>
-        <button type="submit">
+        <button className="btn btn-primary" type="submit">
           &nbsp;+&nbsp; 
         </button>
         <input ref={node => {

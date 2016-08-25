@@ -10,7 +10,7 @@ const Undo = ({ dispatch }) => {
         e.preventDefault();
         dispatch(ActionCreators.undo())
       }}>
-        <button type="submit">Undo </button>
+        <button className="btn btn-primary" type="submit">Undo </button>
       </form>
     </div>
   );
