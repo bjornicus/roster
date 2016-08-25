@@ -6,8 +6,8 @@ import Player from './Player';
 const PlayerList = ({ heading, players, playerFilter, onSubClick}) => (
   <div>
     <h2>{heading}</h2>
-    <ul>
-      {players.filter(playerFilter).map( p => <li key={p.id}><Player player={p} onSubClick={onSubClick} /></li> )}
+    <ul className='list-group'>
+      {players.filter(playerFilter).map( p => <li className='list-group-item' key={p.id}><Player player={p} onSubClick={onSubClick} /></li> )}
     </ul>
   </div>
 );
