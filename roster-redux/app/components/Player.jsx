@@ -2,17 +2,26 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import formatTime from '../time-format';
 
-const Player = ({ player, onSubClick}) => (
+function totalPlayingTime(player, currentTime) {
+    if (player.isPlaying) {
+        return player.previousPlaytime + (currentTime - player.subInTime);
+    }
+    return player.previousPlaytime;
+}
+
+function timeSinceLastSub(player, currentTime) {
+    if (player.isPlaying) {
+        return currentTime - player.subInTime;
+    }
+    return currentTime - player.subOutTime;
+}
+
+const Player = ({ player, currentTime, onSubClick}) => (
   <div>
     <button type="button" className="btn btn-primary" onClick={() => onSubClick(player.id)}>SUB</button>
-    <span className="player-name">{player.name} - {formatTime(player.subInTime)}- {formatTime(player.subOutTime)}- {formatTime(player.previousPlaytime)}</span> 
+    <span className="player-name">{player.name} - {formatTime(timeSinceLastSub(player, currentTime))}- {formatTime(totalPlayingTime(player, currentTime))}</span> 
   </div>
 );
-
-Player.propTypes = {
-  player: PropTypes.object.isRequired,
-  onSubClick: PropTypes.func.isRequired,
-};
 
 const mapStateToProps = (state, ownProps) => {
   return { currentTime: state.clock.currentTime };
@@ -26,7 +35,8 @@ const mapDispatchToProps = dispatch => {
 
 function mergeProps(stateProps, dispatchProps, ownProps) {
   return Object.assign({}, ownProps, {
-    onSubClick: (playerId) => dispatchProps.onSubClick(playerId, stateProps.currentTime)
+    onSubClick: (playerId) => dispatchProps.onSubClick(playerId, stateProps.currentTime),
+    currentTime: stateProps.currentTime
   })
 }
 
