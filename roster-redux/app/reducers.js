@@ -4,12 +4,14 @@ import { combineReducers } from 'redux'
 function playerReducer(state, action) { 
     switch (action.type) {
         case 'ADD_PLAYER':
-            return {id: action.playerId, name: action.playerName, isPlaying: false, lastSubTime: 0};
+            return {id: action.playerId, name: action.playerName, isPlaying: false, lastSubTime: 0, totalPlayingTime: 0};
         case 'SUB_PLAYER': 
            if (action.playerId !== state.id){
                 return state;
             }
             return { ...state, isPlaying: !state.isPlaying, lastSubTime: action.currentTime };
+        case 'RESET_PLAYTIME' :
+            return { ...state, lastSubTime: 0, totalPlayingTime: 0};
         default:
             return state
     }
@@ -22,12 +24,10 @@ function players(state = [], action) {
             ...state,
             playerReducer(undefined, action)
           ]
-        case 'SUB_PLAYER':
+        default:
           return state.map(p =>
             playerReducer(p, action)
           )
-        default:
-          return state
       }
 }
 
