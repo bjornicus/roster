@@ -1,28 +1,39 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
+import { Button, InputGroup, FormGroup, FormControl } from 'react-bootstrap';
 
 let nextPlayerId = 0;
 
 const AddPlayer = ({ players, onAddPlayer }) => {
-  let input;
+  let text = '';
+  function onChange(e) {  
+    const newText = e.target.value;  
+    text = newText;  
+  }
+
+  function onSubmit(e){
+    e.preventDefault()
+    const playerName = this.refs.playerName.value;
+    if (!playerName.trim()) {
+      return
+    }
+    onAddPlayer(playerName, nextPlayerId++)
+    text = '';
+  }
+
+  function getText(){ return text;}
+
   return (
-    <div>
-      <form onSubmit={e => {
-        e.preventDefault()
-        if (!input.value.trim()) {
-          return
-        }
-        onAddPlayer(input.value, nextPlayerId++)
-        input.value = ''
-      }}>
-        <button className="btn btn-primary" type="submit">
-          &nbsp;+&nbsp; 
-        </button>
-        <input ref={node => {
-          input = node
-        }} />
-      </form>
-    </div>
+    <form onSubmit={onSubmit}>
+      <FormGroup>
+        <InputGroup>
+          <InputGroup.Button>
+            <Button type="submit">+</Button>
+          </InputGroup.Button>
+          <FormControl type="text" placeholder="Add Player" onChange={onChange} value={getText} />
+        </InputGroup>
+      </FormGroup>
+    </form>
   );
 }
 
