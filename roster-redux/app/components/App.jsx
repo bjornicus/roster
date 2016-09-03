@@ -9,10 +9,10 @@ export default class App extends React.Component {
     return (
       <div id="content">
         <GameClock />
+        <Undo />
         <AddPlayer />
         <PlayerList heading="Playing" playerFilter={ p => p.isPlaying }/>
         <PlayerList heading="Substitutes" playerFilter={ p => !p.isPlaying }/>
-        <Undo />
       </div>
     );
   }

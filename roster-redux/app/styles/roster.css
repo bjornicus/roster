@@ -7,6 +7,10 @@ ul {
     margin: 0 20px;
     font-size: 2em;
 }
+
+.player-name{
+    margin-left: 10px; 
+}
 /*li {
     text-align: center;
     font-size: calc(90vh/16);
