@@ -1,4 +1,6 @@
 import React, { PropTypes } from 'react';
+import { connect } from 'react-redux';
+import formatTime from '../time-format';
 
 const Player = ({ player, onSubClick}) => (
   <div>
@@ -12,4 +14,20 @@ Player.propTypes = {
   onSubClick: PropTypes.func.isRequired,
 };
 
-export default Player
+const mapStateToProps = (state, ownProps) => {
+  return { currentTime: state.clock.currentTime };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    onSubClick: (playerId, currentTime) => dispatch({ type: 'SUB_PLAYER', playerId, currentTime }),
+  };
+};
+
+function mergeProps(stateProps, dispatchProps, ownProps) {
+  return Object.assign({}, ownProps, {
+    onSubClick: (playerId) => dispatchProps.onSubClick(playerId, stateProps.currentTime)
+  })
+}
+
+export default connect(mapStateToProps, mapDispatchToProps, mergeProps)(Player)
