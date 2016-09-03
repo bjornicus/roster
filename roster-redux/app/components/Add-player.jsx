@@ -36,34 +36,6 @@ class AddPlayer extends Component {
   }  
 } 
 
-// const AddPlayer = ({ players, onAddPlayer }) => {
-//   function onChange(e) {  
-//     nextPlayerName = e.target.value;
-//   }
-
-//   function onSubmit(e){
-//     e.preventDefault()
-//     if (!nextPlayerName.trim()) {
-//       return
-//     }
-//     onAddPlayer(nextPlayerName, nextPlayerId++)
-//     nextPlayerName = '';
-//   }
-
-//   return (
-//     <form onSubmit={onSubmit}>
-//       <FormGroup>
-//         <InputGroup>
-//           <InputGroup.Button>
-//             <Button type="submit">+</Button>
-//           </InputGroup.Button>
-//           <FormControl type="text" placeholder="Add Player" onChange={onChange} />
-//         </InputGroup>
-//       </FormGroup>
-//     </form>
-//   );
-// }
-
 const mapStateToProps = state => {
   return { players: state.players.present };
 };
