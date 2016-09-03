@@ -8,8 +8,8 @@ export default class App extends React.Component {
   render() {
     return (
       <div id="content">
-        <AddPlayer />
         <GameClock />
+        <AddPlayer />
         <PlayerList heading="Playing" playerFilter={ p => p.isPlaying }/>
         <PlayerList heading="Substitutes" playerFilter={ p => !p.isPlaying }/>
         <Undo />

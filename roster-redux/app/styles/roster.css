@@ -3,6 +3,10 @@ ul {
     list-style-type: none;
 }
 
+.clock{
+    margin: 0 20px;
+    font-size: 2em;
+}
 /*li {
     text-align: center;
     font-size: calc(90vh/16);
