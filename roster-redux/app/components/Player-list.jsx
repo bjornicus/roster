@@ -4,7 +4,7 @@ import Player from './Player';
 import { Label } from 'react-bootstrap';
 
 
-const PlayerList = ({ heading, players, playerFilter, onSubClick}) => (
+const PlayerList = ({ heading, players, playerFilter}) => (
   <div>
     <h3><Label>{heading}</Label></h3>
     <ul className='list-group'>
