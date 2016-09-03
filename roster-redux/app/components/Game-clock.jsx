@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
+import { Button, ButtonToolbar } from 'react-bootstrap';
 
 function pad(num, size) {
     let s = "0000" + num;
@@ -20,12 +21,12 @@ function formatTime(time) {
 const GameClock = ({ onStart, onStop, onReset, currentTime }) => {
   let input;
   return (
-    <div>
-        <button className="btn btn-primary" onClick={onStart}> Start </button>
-        <button className="btn btn-primary" onClick={onStop}> Pause </button>
-        <button className="btn btn-primary" onClick={onReset}> Reset </button>
-        <span className='clock'>{formatTime(currentTime)}</span>
-    </div>
+    <ButtonToolbar>
+      <Button bsStyle="success" onClick={onStart}> Start </Button>
+      <Button bsStyle="warning" onClick={onStop}> Pause </Button>
+      <Button bsStyle="danger" onClick={onReset}> Reset </Button>
+      <span className='clock'>{formatTime(currentTime)}</span>
+    </ButtonToolbar>
   );
 }
 
