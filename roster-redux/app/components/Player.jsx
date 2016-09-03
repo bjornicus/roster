@@ -5,7 +5,7 @@ import formatTime from '../time-format';
 const Player = ({ player, onSubClick}) => (
   <div>
     <button type="button" className="btn btn-primary" onClick={() => onSubClick(player.id)}>SUB</button>
-    <span className="player-name">{player.name}</span> 
+    <span className="player-name">{player.name} - {formatTime(player.lastSubTime)}</span> 
   </div>
 );
 

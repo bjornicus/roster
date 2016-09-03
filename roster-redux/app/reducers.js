@@ -4,7 +4,7 @@ import { combineReducers } from 'redux'
 function playerReducer(state, action) { 
     switch (action.type) {
         case 'ADD_PLAYER':
-            return {id: action.playerId, name: action.playerName, isPlaying: false};
+            return {id: action.playerId, name: action.playerName, isPlaying: false, lastSubTime: 0};
         case 'SUB_PLAYER': 
            if (action.playerId !== state.id){
                 return state;
