@@ -6,7 +6,7 @@ import { Label } from 'react-bootstrap';
 
 const PlayerList = ({ heading, players, playerFilter, onSubClick}) => (
   <div>
-    <h2><Label>{heading}</Label></h2>
+    <h3><Label>{heading}</Label></h3>
     <ul className='list-group'>
       {players.filter(playerFilter).map( p => <li className='list-group-item' key={p.id}><Player player={p} onSubClick={onSubClick} /></li> )}
     </ul>
