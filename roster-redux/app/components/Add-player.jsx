@@ -1,41 +1,68 @@
-import React, { PropTypes } from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Button, InputGroup, FormGroup, FormControl } from 'react-bootstrap';
 
 let nextPlayerId = 0;
 
-const AddPlayer = ({ players, onAddPlayer }) => {
-  let text = '';
-  function onChange(e) {  
-    const newText = e.target.value;  
-    text = newText;  
+class AddPlayer extends Component {  
+  constructor(props) {
+    super(props);
+    this.state = {nextPlayerName: ''};
   }
-
-  function onSubmit(e){
+  onChange(e) {  
+    this.setState({ nextPlayerName: e.target.value });
+  }
+  onSubmit(e){
     e.preventDefault()
-    const playerName = this.refs.playerName.value;
-    if (!playerName.trim()) {
+    if (!this.state.nextPlayerName.trim()) {
       return
     }
-    onAddPlayer(playerName, nextPlayerId++)
-    text = '';
+    this.props.onAddPlayer(this.state.nextPlayerName, nextPlayerId++)
+    this.setState({ nextPlayerName: '' });
   }
+  render() {  
+    return (
+      <form onSubmit={this.onSubmit.bind(this)}>
+        <FormGroup>
+          <InputGroup>
+            <InputGroup.Button>
+              <Button type="submit">+</Button>
+            </InputGroup.Button>
+            <FormControl type="text" placeholder="Add Player" onChange={this.onChange.bind(this)} value={this.state.nextPlayerName} />
+          </InputGroup>
+        </FormGroup>
+      </form>
+    ); 
+  }  
+} 
 
-  function getText(){ return text;}
+// const AddPlayer = ({ players, onAddPlayer }) => {
+//   function onChange(e) {  
+//     nextPlayerName = e.target.value;
+//   }
 
-  return (
-    <form onSubmit={onSubmit}>
-      <FormGroup>
-        <InputGroup>
-          <InputGroup.Button>
-            <Button type="submit">+</Button>
-          </InputGroup.Button>
-          <FormControl type="text" placeholder="Add Player" onChange={onChange} value={getText} />
-        </InputGroup>
-      </FormGroup>
-    </form>
-  );
-}
+//   function onSubmit(e){
+//     e.preventDefault()
+//     if (!nextPlayerName.trim()) {
+//       return
+//     }
+//     onAddPlayer(nextPlayerName, nextPlayerId++)
+//     nextPlayerName = '';
+//   }
+
+//   return (
+//     <form onSubmit={onSubmit}>
+//       <FormGroup>
+//         <InputGroup>
+//           <InputGroup.Button>
+//             <Button type="submit">+</Button>
+//           </InputGroup.Button>
+//           <FormControl type="text" placeholder="Add Player" onChange={onChange} />
+//         </InputGroup>
+//       </FormGroup>
+//     </form>
+//   );
+// }
 
 const mapStateToProps = state => {
   return { players: state.players.present };
