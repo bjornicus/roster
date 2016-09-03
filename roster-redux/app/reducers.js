@@ -4,14 +4,27 @@ import { combineReducers } from 'redux'
 function playerReducer(state, action) { 
     switch (action.type) {
         case 'ADD_PLAYER':
-            return {id: action.playerId, name: action.playerName, isPlaying: false, lastSubTime: 0, totalPlayingTime: 0};
+            return {id: action.playerId, name: action.playerName, isPlaying: false, subInTime: 0, subOutTime: 0, previousPlaytime: 0};
         case 'SUB_PLAYER': 
            if (action.playerId !== state.id){
                 return state;
             }
-            return { ...state, isPlaying: !state.isPlaying, lastSubTime: action.currentTime };
+            let newState = {
+                isPlaying: !state.isPlaying,
+                subInTime : state.subInTime,
+                subOutTime : state.subOutTime,
+                previousPlaytime : state.previousPlaytime
+            }
+            if (state.isPlaying) { // player is subbing out
+                newState.subOutTime = action.currentTime;
+                newState.previousPlaytime += action.currentTime - state.subInTime;
+            }
+            else {
+                newState.subInTime = action.currentTime;
+            }
+            return { ...state, ...newState };
         case 'RESET_PLAYTIME' :
-            return { ...state, lastSubTime: 0, totalPlayingTime: 0};
+            return { ...state, subInTime: 0, previousPlaytime: 0};
         default:
             return state
     }
