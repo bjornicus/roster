@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { Button, ProgressBar, Collapse } from 'react-bootstrap';
+import { Button, ProgressBar, Collapse, Row, Col } from 'react-bootstrap';
 import TimeDisplay from './Time-display';
 
 function totalPlayingTime(player, currentTime) {
@@ -22,17 +22,23 @@ function timeSinceLastSub(player, currentTime) {
 }
 
 const Player = ({ player, currentTime, onSubClick, onToggleClock}) => (
-  <div>
-    <button type="button" className="btn btn-primary" onClick={() => onSubClick(player.id)}>SUB</button>
-    <span className="player-name"> {player.name} </span>
-    <ProgressBar bsStyle="success" now={totalPlayingPercent(player, currentTime)} onClick={() => onToggleClock(player.id)} />
-    <Collapse in={player.showClock}>
-        <div>
-        <TimeDisplay time={timeSinceLastSub(player, currentTime)} />
-        <TimeDisplay time={totalPlayingTime(player, currentTime)} />
-        </div>
-    </Collapse>
-  </div>
+  <Row>
+    <Col xs={2}>
+        <button type="button" className="btn btn-primary" onClick={() => onSubClick(player.id)}>SUB</button>
+    </Col>
+    <Col xs={6}>
+        <span className="player-name"> {player.name} </span>
+    </Col>
+    <Col xs={4}>
+        <ProgressBar bsStyle="success" now={totalPlayingPercent(player, currentTime)} onClick={() => onToggleClock(player.id)} />
+        <Collapse in={player.showClock}>
+            <Row>
+            <TimeDisplay time={timeSinceLastSub(player, currentTime)} />
+            <TimeDisplay time={totalPlayingTime(player, currentTime)} />
+            </Row>
+        </Collapse>
+    </Col>
+  </Row>
 );
 
 const mapStateToProps = (state, ownProps) => {
