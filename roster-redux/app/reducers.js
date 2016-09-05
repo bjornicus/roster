@@ -65,7 +65,7 @@ function clock(state = { currentTime: 0, isRunning: false }, action) {
 
 players = undoable(players, {
     limit: 10, // set a limit for the history
-    filter: includeAction(['SUB_PLAYERx', 'ADD_PLAYER']),
+    filter: includeAction(['SUB_PLAYER', 'ADD_PLAYER']),
   });
 
 export default combineReducers({players, clock});
