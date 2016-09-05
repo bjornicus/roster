@@ -10,8 +10,8 @@ export default class App extends React.Component {
     return (
       <Grid id="content">
         <Row>
-          <Col xs={10}><GameClock /></Col>
-          <Col xs={2}><Undo /></Col>
+          <Col xs={9}><GameClock /></Col>
+          <Col xs={3}><Undo /></Col>
         </Row>
         <Row>
           <AddPlayer />
