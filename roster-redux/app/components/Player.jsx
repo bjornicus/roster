@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
-import formatTime from '../time-format';
+import TimeDisplay from './Time-display';
 
 function totalPlayingTime(player, currentTime) {
     if (player.isPlaying) {
@@ -19,7 +19,9 @@ function timeSinceLastSub(player, currentTime) {
 const Player = ({ player, currentTime, onSubClick}) => (
   <div>
     <button type="button" className="btn btn-primary" onClick={() => onSubClick(player.id)}>SUB</button>
-    <span className="player-name">{player.name} - {formatTime(timeSinceLastSub(player, currentTime))}- {formatTime(totalPlayingTime(player, currentTime))}</span> 
+    <span className="player-name"> {player.name} </span>
+    <TimeDisplay time={timeSinceLastSub(player, currentTime)} />
+    <TimeDisplay time={totalPlayingTime(player, currentTime)} />
   </div>
 );
 

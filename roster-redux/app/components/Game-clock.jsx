@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { Label, Button, ButtonToolbar } from 'react-bootstrap';
-import formatTime from '../time-format';
+import { Button, ButtonToolbar } from 'react-bootstrap';
+import TimeDisplay from './Time-display';
 
 const GameClock = ({ onStart, onStop, onReset, currentTime }) => {
   let input;
@@ -10,7 +10,7 @@ const GameClock = ({ onStart, onStop, onReset, currentTime }) => {
       <Button bsStyle="success" onClick={onStart}> Start </Button>
       <Button bsStyle="warning" onClick={onStop}> Pause </Button>
       <Button bsStyle="danger" onClick={onReset}> Reset </Button>
-      <Label className='clock'>{formatTime(currentTime)}</Label>
+      <TimeDisplay time={currentTime} />
     </ButtonToolbar>
   );
 }
