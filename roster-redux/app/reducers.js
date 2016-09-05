@@ -1,4 +1,4 @@
-import undoable from 'redux-undo';
+import undoable, { includeAction, excludeAction }from 'redux-undo';
 import { combineReducers } from 'redux'
 
 function playerReducer(state, action) { 
@@ -58,6 +58,9 @@ function clock(state = { currentTime: 0, isRunning: false }, action) {
     return state;
 }
 
-players = undoable(players);
+players = undoable(players, {
+    limit: 10, // set a limit for the history
+    filter: includeAction(['SUB_PLAYERx', 'ADD_PLAYER']),
+  });
 
 export default combineReducers({players, clock});
