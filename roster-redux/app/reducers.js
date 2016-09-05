@@ -23,8 +23,8 @@ function playerReducer(state, action) {
                 newState.subInTime = action.currentTime;
             }
             return { ...state, ...newState };
-        case 'RESET_PLAYTIME' :
-            return { ...state, subInTime: 0, previousPlaytime: 0};
+        case 'RESET_CLOCK' :
+            return { ...state, subInTime: 0, subOutTime: 0, previousPlaytime: 0};
         default:
             return state
     }
