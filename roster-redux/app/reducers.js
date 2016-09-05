@@ -23,6 +23,8 @@ function playerReducer(state, action) {
                 newState.subInTime = action.currentTime;
             }
             return { ...state, ...newState };
+        case 'TOGGLE_CLOCK' :
+            return {...state, showClock: !state.showClock};
         case 'RESET_CLOCK' :
             return { ...state, subInTime: 0, subOutTime: 0, previousPlaytime: 0};
         default:
