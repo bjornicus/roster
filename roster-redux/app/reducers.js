@@ -37,6 +37,8 @@ function playerReducer(state, action) {
 
 function players(state = [], action) {
     switch (action.type) {
+        case 'UPDATE_TIME':
+            return state;
         case 'ADD_PLAYER':
           return [
             ...state,
