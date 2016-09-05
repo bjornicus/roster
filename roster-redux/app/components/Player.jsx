@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
+import { Button, ProgressBar } from 'react-bootstrap';
 import TimeDisplay from './Time-display';
 
 function totalPlayingTime(player, currentTime) {
@@ -7,6 +8,10 @@ function totalPlayingTime(player, currentTime) {
         return player.previousPlaytime + (currentTime - player.subInTime);
     }
     return player.previousPlaytime;
+}
+
+function totalPlayingPercent(player, currentTime){
+    return 100*(totalPlayingTime(player,currentTime) / currentTime);
 }
 
 function timeSinceLastSub(player, currentTime) {
@@ -20,6 +25,7 @@ const Player = ({ player, currentTime, onSubClick}) => (
   <div>
     <button type="button" className="btn btn-primary" onClick={() => onSubClick(player.id)}>SUB</button>
     <span className="player-name"> {player.name} </span>
+    <ProgressBar bsStyle="success" now={totalPlayingPercent(player, currentTime)} />
     <TimeDisplay time={timeSinceLastSub(player, currentTime)} />
     <TimeDisplay time={totalPlayingTime(player, currentTime)} />
   </div>
