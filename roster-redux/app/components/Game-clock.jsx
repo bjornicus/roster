@@ -3,20 +3,20 @@ import { connect } from 'react-redux';
 import { Button, ButtonToolbar } from 'react-bootstrap';
 import TimeDisplay from './Time-display';
 
-const GameClock = ({ onStart, onStop, onReset, currentTime }) => {
-  let input;
+const GameClock = ({ onStart, onStop, onReset, clock }) => {
+  let startStopButton = clock.isRunning ? <Button bsStyle="warning" onClick={onStop}> Pause </Button> : <Button bsStyle="success" onClick={onStart}> Start </Button>
+
   return (
     <ButtonToolbar>
-      <Button bsStyle="success" onClick={onStart}> Start </Button>
-      <Button bsStyle="warning" onClick={onStop}> Pause </Button>
+      {startStopButton}
       <Button bsStyle="danger" onClick={onReset}> Reset </Button>
-      <TimeDisplay time={currentTime} />
+      <TimeDisplay time={clock.currentTime} />
     </ButtonToolbar>
   );
 }
 
 const mapStateToProps = state => {
-  return { currentTime: state.clock.currentTime };
+  return { clock: state.clock };
 };
 
 const mapDispatchToProps = dispatch => {
