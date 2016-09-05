@@ -32,10 +32,10 @@ const Player = ({ player, currentTime, onSubClick, onToggleClock}) => (
     <Col xs={4}>
         <ProgressBar bsStyle="success" now={totalPlayingPercent(player, currentTime)} onClick={() => onToggleClock(player.id)} />
         <Collapse in={player.showClock}>
-            <Row>
-            <TimeDisplay time={timeSinceLastSub(player, currentTime)} />
-            <TimeDisplay time={totalPlayingTime(player, currentTime)} />
-            </Row>
+          <div>
+            <TimeDisplay clockStyle="last-sub" time={timeSinceLastSub(player, currentTime)} />
+            <TimeDisplay clockStyle="total-played" time={totalPlayingTime(player, currentTime)} />
+          </div>
         </Collapse>
     </Col>
   </Row>

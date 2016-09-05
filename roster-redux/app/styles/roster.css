@@ -7,10 +7,23 @@ ul {
     margin: 0 5px;
     font-size: 2em;
 }
+.clock.last-sub {
+    font-size: 1em;
+    margin: 0;
+}
+.clock.total-played {
+    font-size: 1em;
+    background-color: green;
+    margin: 0;
+}
 
+.progress{
+    margin: 0;
+}
 .player-name{
     margin-left: 10px; 
 }
+
 
 .h1, .h2, .h3, h1, h2, h3 {
     margin-top: 10px;
