@@ -66,8 +66,10 @@ function clock(state = { currentTime: 0, isRunning: false }, action) {
 }
 
 players = undoable(players, {
-    limit: 10, // set a limit for the history
-    filter: includeAction(['SUB_PLAYER', 'ADD_PLAYER']),
+    limit: 10, 
+    // I'd like to scope undo to just sub and add player, but the filter doesn't seem to work
+    // https://github.com/omnidan/redux-undo/issues/106
+    filter: includeAction(['SUB_PLAYER', 'ADD_PLAYER']), 
   });
 
 export default combineReducers({players, clock});
