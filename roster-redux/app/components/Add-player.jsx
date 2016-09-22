@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Button, InputGroup, FormGroup, FormControl } from 'react-bootstrap';
+import { Button, InputGroup, FormGroup, FormControl, DropdownButton, MenuItem } from 'react-bootstrap';
 
 let nextPlayerId = 0;
+const roster = ["Amal", "Elena", "Grace", "Iris", "Ivy", "Layla", "Leah", "Rebecca", "Rhea", "Shelby", "Sienna", "Tess"];
 
 class AddPlayer extends Component {  
   constructor(props) {
@@ -11,6 +12,9 @@ class AddPlayer extends Component {
   }
   onChange(e) {  
     this.setState({ nextPlayerName: e.target.value });
+  }
+  onSelect(key) {
+    this.setState( {nextPlayerName: key});
   }
   onSubmit(e){
     e.preventDefault()
@@ -29,6 +33,14 @@ class AddPlayer extends Component {
               <Button type="submit">+</Button>
             </InputGroup.Button>
             <FormControl type="text" placeholder="Add Player" onChange={this.onChange.bind(this)} value={this.state.nextPlayerName} />
+            <DropdownButton
+              componentClass={InputGroup.Button}
+              onSelect={this.onSelect.bind(this)}
+              id="input-dropdown-addon"
+              title="Players"
+            > 
+            { roster.map(player => <MenuItem key={player} eventKey={player}>{player}</MenuItem> )  }
+            </DropdownButton>
           </InputGroup>
         </FormGroup>
       </form>
