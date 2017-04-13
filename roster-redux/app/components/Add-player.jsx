@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Button, InputGroup, FormGroup, FormControl, DropdownButton, MenuItem } from 'react-bootstrap';
 
 let nextPlayerId = 0;
-const roster = ["Amal", "Elena", "Grace", "Iris", "Ivy", "Layla", "Leah", "Rebecca", "Rhea", "Shelby", "Sienna", "Tess"];
+const roster = ["Abby","Astrid","Helena","Reese","Ruby","Vera"];
 
 class AddPlayer extends Component {  
   constructor(props) {
