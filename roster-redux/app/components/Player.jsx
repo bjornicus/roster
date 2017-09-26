@@ -21,13 +21,16 @@ function timeSinceLastSub(player, currentTime) {
     return currentTime - player.subOutTime;
 }
 
-const Player = ({ player, currentTime, onSubClick, onToggleClock}) => (
+const Player = ({ player, currentTime, onSubClick, onGoalScored, onToggleClock}) => (
   <Row>
     <Col xs={2}>
         <button type="button" className="btn btn-primary" onClick={() => onSubClick(player.id)}>SUB</button>
     </Col>
-    <Col xs={6}>
+    <Col xs={4}>
         <span className="player-name"> {player.name} </span>
+    </Col>
+    <Col xs={2}>
+        <button type="button" className="btn" onClick={() => onGoalScored(player.id)}> {player.goals} </button>
     </Col>
     <Col xs={4}>
         <ProgressBar bsStyle="success" now={totalPlayingPercent(player, currentTime)} onClick={() => onToggleClock(player.id)} />
@@ -48,6 +51,7 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = dispatch => {
   return {
     onSubClick: (playerId, currentTime) => dispatch({ type: 'SUB_PLAYER', playerId, currentTime }),
+    onGoalScored: (playerId) => dispatch({ type: 'GOAL', playerId }),
     onToggleClock: (playerId) => dispatch({ type: 'TOGGLE_CLOCK', playerId})
   };
 };
@@ -55,6 +59,7 @@ const mapDispatchToProps = dispatch => {
 function mergeProps(stateProps, dispatchProps, ownProps) {
   return Object.assign({}, ownProps, {
     onSubClick: (playerId) => dispatchProps.onSubClick(playerId, stateProps.currentTime),
+    onGoalScored: (playerId) => dispatchProps.onGoalScored(playerId),
     onToggleClock: (playerId) => dispatchProps.onToggleClock(playerId),
     currentTime: stateProps.currentTime
   })
