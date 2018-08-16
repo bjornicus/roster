@@ -9,9 +9,6 @@ export default function() {
     <div>
       <GameClock />
       <Undo />
-
-      <AddPlayer />
-
       <PlayerList heading="Playing" playerFilter={p => p.isPlaying} />
       <PlayerList heading="Substitutes" playerFilter={p => !p.isPlaying} />
     </div>

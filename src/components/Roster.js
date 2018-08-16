@@ -7,6 +7,7 @@ import GameClock from './Game-clock';
 export default function() {
   return (
     <div>
+      <AddPlayer />
       <PlayerList heading="All Players" playerFilter={p => true} />
     </div>
   );
