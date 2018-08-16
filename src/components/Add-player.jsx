@@ -14,6 +14,10 @@ const AddButton = Button.extend`
   width: ${buttonHeight};
 `;
 
+const NameField = styled.input`
+  flex-grow: 1;
+`;
+
 export default class AddPlayer extends Component {
   constructor(props) {
     super(props);
@@ -38,7 +42,7 @@ export default class AddPlayer extends Component {
       <Form onSubmit={this.onSubmit.bind(this)}>
         <AddButton type="submit">+</AddButton>
 
-        <input
+        <NameField
           type="text"
           placeholder="Add Player"
           onChange={this.onChange.bind(this)}
