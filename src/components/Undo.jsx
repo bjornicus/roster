@@ -6,14 +6,18 @@ const Undo = ({ dispatch }) => {
   let input;
   return (
     <div>
-      <form onSubmit={e => {
-        e.preventDefault();
-        dispatch(ActionCreators.undo())
-      }}>
-        <button className="btn btn-primary" type="submit">Undo </button>
+      <form
+        onSubmit={e => {
+          e.preventDefault();
+          dispatch(ActionCreators.undo());
+        }}
+      >
+        <button className="btn btn-primary" type="submit">
+          Undo{' '}
+        </button>
       </form>
     </div>
   );
-}
+};
 
 export default connect()(Undo);
