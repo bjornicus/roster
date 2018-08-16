@@ -8,13 +8,20 @@ const Players = styled.ul`
   overflow: scroll;
 `;
 
+const Player = styled.ul`
+  line-height: 2rem;
+  border: 1px solid blue;
+  border-radius: 5px;
+  margin-bottom: 10px;
+`;
+
 export function Roster({ players, addPlayer }) {
   return (
     <Screen>
       <AddPlayer onAddPlayer={addPlayer} />
       <Players>
         {players.map(p => (
-          <li key={p.id}>{p.name}</li>
+          <Player key={p.id}>{p.name}</Player>
         ))}
       </Players>
     </Screen>
