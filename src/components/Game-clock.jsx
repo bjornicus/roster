@@ -4,24 +4,15 @@ import TimeDisplay from './Time-display';
 
 const GameClock = ({ onStart, onStop, onReset, clock }) => {
   let startStopButton = clock.isRunning ? (
-    <button bsStyle="warning" onClick={onStop}>
-      {' '}
-      Pause{' '}
-    </button>
+    <button onClick={onStop}> Pause </button>
   ) : (
-    <button bsStyle="success" onClick={onStart}>
-      {' '}
-      Start{' '}
-    </button>
+    <button onClick={onStart}> Start </button>
   );
 
   return (
     <div>
       {startStopButton}
-      <button bsStyle="danger" onClick={onReset}>
-        {' '}
-        Reset{' '}
-      </button>
+      <button onClick={onReset}> Reset </button>
       <TimeDisplay time={clock.currentTime} />
     </div>
   );

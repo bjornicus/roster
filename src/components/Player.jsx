@@ -48,7 +48,6 @@ const Player = ({
     </button>
 
     {/* <ProgressBar
-          bsStyle="success"
           now={totalPlayingPercent(player, currentTime)}
           onClick={() => onToggleClock(player.id)}
         /> */}
