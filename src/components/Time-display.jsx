@@ -1,4 +1,4 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
 
 function pad(num, size) {
   let s = '0000' + num;
@@ -18,6 +18,5 @@ function formatTime(time) {
 }
 
 export default ({ time, clockStyle }) => {
-  let input;
   return <label className={'clock ' + clockStyle}>{formatTime(time)}</label>;
 };

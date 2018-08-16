@@ -1,4 +1,4 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import TimeDisplay from './Time-display';
 import { Button } from './Button';
@@ -10,9 +10,9 @@ function totalPlayingTime(player, currentTime) {
   return player.previousPlaytime;
 }
 
-function totalPlayingPercent(player, currentTime) {
-  return 100 * (totalPlayingTime(player, currentTime) / currentTime);
-}
+// function totalPlayingPercent(player, currentTime) {
+//   return 100 * (totalPlayingTime(player, currentTime) / currentTime);
+// }
 
 function timeSinceLastSub(player, currentTime) {
   if (player.isPlaying) {

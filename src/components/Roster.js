@@ -1,15 +1,23 @@
 import React from 'react';
-import PlayerList from './Player-list';
 import AddPlayer from './Add-player';
-import Undo from './Undo';
-import GameClock from './Game-clock';
 import Screen from './Screen';
+import { connect } from 'react-redux';
 
-export default function() {
+export function Roster({ players }) {
   return (
     <Screen>
       <AddPlayer />
-      <PlayerList heading="All Players" playerFilter={p => true} />
+      <ul>
+        {players.map(p => (
+          <li key={p.id}>{p.name}</li>
+        ))}
+      </ul>
     </Screen>
   );
 }
+
+const mapStateToProps = state => {
+  return { players: state.players.present };
+};
+
+export default connect(mapStateToProps)(Roster);
