@@ -1,18 +1,19 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import TimeDisplay from './Time-display';
+import { Button } from './Button';
 
 const GameClock = ({ onStart, onStop, onReset, clock }) => {
   let startStopButton = clock.isRunning ? (
-    <button onClick={onStop}> Pause </button>
+    <Button onClick={onStop}> Pause </Button>
   ) : (
-    <button onClick={onStart}> Start </button>
+    <Button onClick={onStart}> Start </Button>
   );
 
   return (
     <div>
       {startStopButton}
-      <button onClick={onReset}> Reset </button>
+      <Button onClick={onReset}> Reset </Button>
       <TimeDisplay time={clock.currentTime} />
     </div>
   );

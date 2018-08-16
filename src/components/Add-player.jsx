@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Button } from './Button';
 
 let nextPlayerId = 0;
 const roster = [];
@@ -26,7 +27,7 @@ class AddPlayer extends Component {
   render() {
     return (
       <form onSubmit={this.onSubmit.bind(this)}>
-        <button type="submit">+</button>
+        <Button type="submit">+</Button>
 
         <input
           type="text"

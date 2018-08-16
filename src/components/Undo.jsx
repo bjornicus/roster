@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { ActionCreators } from 'redux-undo';
+import { Button } from './Button';
 
 const Undo = ({ dispatch }) => {
   let input;
@@ -12,9 +13,9 @@ const Undo = ({ dispatch }) => {
           dispatch(ActionCreators.undo());
         }}
       >
-        <button className="btn btn-primary" type="submit">
+        <Button className="btn btn-primary" type="submit">
           Undo{' '}
-        </button>
+        </Button>
       </form>
     </div>
   );

@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import TimeDisplay from './Time-display';
+import { Button } from './Button';
 
 function totalPlayingTime(player, currentTime) {
   if (player.isPlaying) {
@@ -28,24 +29,24 @@ const Player = ({
   onToggleClock
 }) => (
   <div>
-    <button
+    <Button
       type="button"
       className="btn btn-primary"
       onClick={() => onSubClick(player.id)}
     >
       SUB
-    </button>
+    </Button>
 
     <span className="player-name"> {player.name} </span>
 
-    <button
+    <Button
       type="button"
       className="btn"
       onClick={() => onGoalScored(player.id)}
     >
       {' '}
       {player.goals}{' '}
-    </button>
+    </Button>
 
     {/* <ProgressBar
           now={totalPlayingPercent(player, currentTime)}
