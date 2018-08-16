@@ -1,9 +1,20 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Button } from './Button';
+import { Button, buttonHeight } from './Button';
+import styled from 'styled-components';
 
 let nextPlayerId = 0;
 const roster = [];
+
+const Form = styled.form`
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+`;
+
+const AddButton = Button.extend`
+  width: ${buttonHeight};
+`;
 
 class AddPlayer extends Component {
   constructor(props) {
@@ -26,8 +37,8 @@ class AddPlayer extends Component {
   }
   render() {
     return (
-      <form onSubmit={this.onSubmit.bind(this)}>
-        <Button type="submit">+</Button>
+      <Form onSubmit={this.onSubmit.bind(this)}>
+        <AddButton type="submit">+</AddButton>
 
         <input
           type="text"
@@ -35,13 +46,7 @@ class AddPlayer extends Component {
           onChange={this.onChange.bind(this)}
           value={this.state.nextPlayerName}
         />
-
-        {roster.map(player => (
-          <div key={player} eventKey={player}>
-            {player}
-          </div>
-        ))}
-      </form>
+      </Form>
     );
   }
 }
