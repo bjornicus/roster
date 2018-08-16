@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import { Button, buttonHeight } from './Button';
 import styled from 'styled-components';
 
@@ -15,7 +14,7 @@ const AddButton = Button.extend`
   width: ${buttonHeight};
 `;
 
-class AddPlayer extends Component {
+export default class AddPlayer extends Component {
   constructor(props) {
     super(props);
     this.state = { nextPlayerName: '' };
@@ -31,7 +30,7 @@ class AddPlayer extends Component {
     if (!this.state.nextPlayerName.trim()) {
       return;
     }
-    this.props.onAddPlayer(this.state.nextPlayerName, nextPlayerId++);
+    this.props.onAddPlayer(this.state.nextPlayerName);
     this.setState({ nextPlayerName: '' });
   }
   render() {
@@ -49,23 +48,3 @@ class AddPlayer extends Component {
     );
   }
 }
-
-const mapStateToProps = state => {
-  return { players: state.players.present };
-};
-
-const mapDispatchToProps = dispatch => {
-  return {
-    onAddPlayer: (playerName, playerId) =>
-      dispatch({
-        type: 'ADD_PLAYER',
-        playerName: playerName,
-        playerId: playerId
-      })
-  };
-};
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(AddPlayer);

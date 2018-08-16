@@ -5,7 +5,7 @@ function playerReducer(state, action) {
   switch (action.type) {
     case 'ADD_PLAYER':
       return {
-        id: action.playerId,
+        id: state.id,
         name: action.playerName,
         isPlaying: false,
         subInTime: 0,
@@ -53,7 +53,10 @@ function playersReducer(state = [], action) {
     case 'UPDATE_TIME':
       return state;
     case 'ADD_PLAYER':
-      return [...state, playerReducer(undefined, action)];
+      return [
+        ...state,
+        playerReducer({ id: Math.max(0, ...state.map(p => p.id)) + 1 }, action)
+      ];
     default:
       return state.map(p => playerReducer(p, action));
   }
@@ -78,7 +81,7 @@ let players = undoable(playersReducer, {
   limit: 10,
   // I'd like to scope undo to just sub and add player, but the filter doesn't seem to work
   // https://github.com/omnidan/redux-undo/issues/106
-  filter: includeAction(['SUB_PLAYER', 'ADD_PLAYER', 'GOAL'])
+  filter: includeAction(['SUB_PLAYER', 'GOAL'])
 });
 
 export default combineReducers({ players, clock });

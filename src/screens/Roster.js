@@ -8,10 +8,10 @@ const Players = styled.ul`
   overflow: scroll;
 `;
 
-export function Roster({ players }) {
+export function Roster({ players, addPlayer }) {
   return (
     <Screen>
-      <AddPlayer />
+      <AddPlayer onAddPlayer={addPlayer} />
       <Players>
         {players.map(p => (
           <li key={p.id}>{p.name}</li>
@@ -25,4 +25,17 @@ const mapStateToProps = state => {
   return { players: state.players.present };
 };
 
-export default connect(mapStateToProps)(Roster);
+const mapDispatchToProps = dispatch => {
+  return {
+    addPlayer: playerName =>
+      dispatch({
+        type: 'ADD_PLAYER',
+        playerName: playerName
+      })
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Roster);
