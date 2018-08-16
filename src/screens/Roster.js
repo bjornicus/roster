@@ -1,5 +1,5 @@
 import React from 'react';
-import AddPlayer from './Add-player';
+import AddPlayer from '../components/Add-player';
 import Screen from './Screen';
 import { connect } from 'react-redux';
 

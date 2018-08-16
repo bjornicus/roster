@@ -1,7 +1,7 @@
 import React from 'react';
-import PlayerList from './Player-list';
-import Undo from './Undo';
-import GameClock from './Game-clock';
+import PlayerList from '../components/Player-list';
+import Undo from '../components/Undo';
+import GameClock from '../components/Game-clock';
 import Screen from './Screen';
 
 export default function() {

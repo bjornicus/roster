@@ -1,5 +1,5 @@
 import React from 'react';
-import PlayerList from './Player-list';
+import PlayerList from '../components/Player-list';
 import Screen from './Screen';
 
 export default function() {
