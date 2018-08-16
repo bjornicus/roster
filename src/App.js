@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Switch, Route, Redirect } from 'react-router';
-import { HashRouter as Router } from 'react-router-dom';
+import { MemoryRouter as Router } from 'react-router-dom';
 import Game from './components/Game';
 import Stats from './components/Stats';
 import Roster from './components/Roster';
