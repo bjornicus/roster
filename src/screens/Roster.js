@@ -3,6 +3,7 @@ import AddPlayer from '../components/Add-player';
 import Screen from './Screen';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
+import { Button, buttonHeight } from '../components/Button';
 
 const Players = styled.ul`
   overflow: scroll;
@@ -31,9 +32,10 @@ const ActiveCheckbox = styled.input.attrs({
 
 const PlayerName = styled.h2`
   margin: 0.2rem;
+  flex-grow: 1;
 `;
 
-export function Roster({ players, addPlayer }) {
+export function Roster({ players, addPlayer, removePlayer }) {
   return (
     <Screen>
       <AddPlayer onAddPlayer={addPlayer} />
@@ -42,6 +44,9 @@ export function Roster({ players, addPlayer }) {
           <Player key={p.id}>
             <ActiveCheckbox />
             <PlayerName>{p.name}</PlayerName>
+            <Button color="#D81159" onClick={() => removePlayer(p.id)}>
+              REMOVE
+            </Button>
           </Player>
         ))}
       </Players>
@@ -59,6 +64,11 @@ const mapDispatchToProps = dispatch => {
       dispatch({
         type: 'ADD_PLAYER',
         playerName
+      }),
+    removePlayer: id =>
+      dispatch({
+        type: 'REMOVE_PLAYER',
+        playerId: id
       })
   };
 };

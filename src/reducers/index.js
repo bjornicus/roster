@@ -57,7 +57,7 @@ function playersReducer(state = [], action) {
       return [
         ...state,
         playerReducer({ id: Math.max(0, ...state.map(p => p.id)) + 1 }, action)
-      ];
+      ].sort((a, b) => a.name.localeCompare(b.name));
 
     case 'REMOVE_PLAYER':
       return state.filter(p => p.id !== action.playerId);
