@@ -14,6 +14,15 @@ const Header = styled.div`
   justify-content: space-between;
 `;
 
+const List = styled.div`
+  width: 50%;
+`;
+
+const Columns = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
+
 function Game({ activePlayers }) {
   let playing = activePlayers
     .filter(p => p.isPlaying)
@@ -27,18 +36,24 @@ function Game({ activePlayers }) {
         <GameClock />
         <Undo />
       </Header>
-      <h1>PLAYING</h1>
-      <PlayerList>
-        {playing.map(p => (
-          <ActivePlayer key={p.id} player={p} />
-        ))}
-      </PlayerList>
-      <h1>SUBS</h1>{' '}
-      <PlayerList>
-        {subs.map(p => (
-          <ActivePlayer key={p.id} player={p} />
-        ))}
-      </PlayerList>
+      <Columns>
+        <List>
+          <h1>PLAYING</h1>
+          <PlayerList>
+            {playing.map(p => (
+              <ActivePlayer key={p.id} player={p} />
+            ))}
+          </PlayerList>
+        </List>
+        <List>
+          <h1>SUBS</h1>{' '}
+          <PlayerList>
+            {subs.map(p => (
+              <ActivePlayer key={p.id} player={p} />
+            ))}
+          </PlayerList>
+        </List>
+      </Columns>
     </Screen>
   );
 }
