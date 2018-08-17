@@ -8,6 +8,7 @@ function playerReducer(state, action) {
         id: state.id,
         name: action.playerName,
         isPlaying: false,
+        isActive: false,
         subInTime: 0,
         subOutTime: 0,
         previousPlaytime: 0,
@@ -57,6 +58,9 @@ function playersReducer(state = [], action) {
         ...state,
         playerReducer({ id: Math.max(0, ...state.map(p => p.id)) + 1 }, action)
       ];
+
+    case 'REMOVE_PLAYER':
+      return state.filter(p => p.id !== action.playerId);
     default:
       return state.map(p => playerReducer(p, action));
   }
