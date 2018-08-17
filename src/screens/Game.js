@@ -15,8 +15,12 @@ const Header = styled.div`
 `;
 
 function Game({ activePlayers }) {
-  let playing = activePlayers.filter(p => p.isPlaying);
-  let subs = activePlayers.filter(p => !p.isPlaying);
+  let playing = activePlayers
+    .filter(p => p.isPlaying)
+    .sort((a, b) => a.subInTime - b.subInTime);
+  let subs = activePlayers
+    .filter(p => !p.isPlaying)
+    .sort((a, b) => a.subOutTime - b.subOutTime);
   return (
     <Screen>
       <Header>

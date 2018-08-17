@@ -46,10 +46,10 @@ const ActivePlayer = ({
         clockStyle="last-sub"
         time={timeSinceLastSub(player, currentTime)}
       />
-      <TimeDisplay
+      {/* <TimeDisplay
         clockStyle="total-played"
         time={totalPlayingTime(player, currentTime)}
-      />
+      /> */}
     </div>
   </Player>
 );
