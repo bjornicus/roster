@@ -1,8 +1,9 @@
 import React from 'react';
+import styled from 'styled-components';
 import { connect } from 'react-redux';
 import TimeDisplay from './Time-display';
 import { Button } from './Button';
-import { PlayerName } from './PlayerList';
+import { PlayerName, Player } from './PlayerList';
 
 function totalPlayingTime(player, currentTime) {
   if (player.isPlaying) {
@@ -29,7 +30,7 @@ const ActivePlayer = ({
   onGoalScored,
   onToggleClock
 }) => (
-  <div>
+  <Player>
     <Button onClick={() => onSubClick(player.id)}>SUB</Button>
 
     <PlayerName> {player.name} </PlayerName>
@@ -50,7 +51,7 @@ const ActivePlayer = ({
         time={totalPlayingTime(player, currentTime)}
       />
     </div>
-  </div>
+  </Player>
 );
 
 const mapStateToProps = (state, ownProps) => {

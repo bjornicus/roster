@@ -6,9 +6,8 @@ import Screen from './Screen';
 import GameClock from '../components/Game-clock';
 import Undo from '../components/Undo';
 
-import { PlayerList, Player, PlayerName } from '../components/PlayerList';
+import { PlayerList } from '../components/PlayerList';
 import ActivePlayer from '../components/ActivePlayer';
-import { Button } from '../components/Button';
 
 const Header = styled.div`
   display: flex;
@@ -27,17 +26,13 @@ function Game({ activePlayers }) {
       <h1>PLAYING</h1>
       <PlayerList>
         {playing.map(p => (
-          <Player key={p.id}>
-            <ActivePlayer player={p} />
-          </Player>
+          <ActivePlayer key={p.id} player={p} />
         ))}
       </PlayerList>
       <h1>SUBS</h1>{' '}
       <PlayerList>
         {subs.map(p => (
-          <Player key={p.id}>
-            <ActivePlayer player={p} />
-          </Player>
+          <ActivePlayer key={p.id} player={p} />
         ))}
       </PlayerList>
     </Screen>
