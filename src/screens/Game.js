@@ -14,8 +14,8 @@ const Header = styled.div`
   justify-content: space-between;
 `;
 
-const List = styled.div`
-  width: 50%;
+const Column = styled.div`
+  max-width: 46%;
 `;
 
 const Columns = styled.div`
@@ -37,22 +37,22 @@ function Game({ activePlayers }) {
         <Undo />
       </Header>
       <Columns>
-        <List>
+        <Column>
           <h1>PLAYING</h1>
           <PlayerList>
             {playing.map(p => (
               <ActivePlayer key={p.id} player={p} />
             ))}
           </PlayerList>
-        </List>
-        <List>
+        </Column>
+        <Column>
           <h1>SUBS</h1>{' '}
           <PlayerList>
             {subs.map(p => (
               <ActivePlayer key={p.id} player={p} />
             ))}
           </PlayerList>
-        </List>
+        </Column>
       </Columns>
     </Screen>
   );
