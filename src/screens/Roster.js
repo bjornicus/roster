@@ -6,6 +6,7 @@ import styled from 'styled-components';
 
 const Players = styled.ul`
   overflow: scroll;
+  padding: 0;
 `;
 
 const Player = styled.ul`
