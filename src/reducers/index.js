@@ -14,6 +14,11 @@ function playerReducer(state, action) {
         previousPlaytime: 0,
         goals: 0
       };
+    case 'TOGGLE_PLAYER_ACTIVE':
+      if (action.playerId !== state.id) {
+        return state;
+      }
+      return { ...state, isActive: !state.isActive };
     case 'SUB_PLAYER':
       if (action.playerId !== state.id) {
         return state;

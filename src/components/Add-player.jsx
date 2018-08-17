@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import { Button, buttonHeight } from './Button';
 import styled from 'styled-components';
 
-let nextPlayerId = 0;
-
 const Form = styled.form`
   display: flex;
   flex-direction: row;
