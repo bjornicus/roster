@@ -52,7 +52,7 @@ export function Roster({
               defaultChecked={p.isActive}
             />
             <PlayerName>{p.name}</PlayerName>
-            <Button color="#D81159" onClick={() => removePlayer(p.id)}>
+            <Button color="yellow" onClick={() => removePlayer(p.id)}>
               REMOVE
             </Button>
           </Player>
