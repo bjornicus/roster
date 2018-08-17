@@ -24,6 +24,20 @@ setInterval(function() {
   store.dispatch({ type: 'UPDATE_TIME', currentTime: clock.time() });
 }, 1000);
 
+let roster = JSON.parse(localStorage.getItem('roster')) || [];
+roster.forEach(playerName => {
+  store.dispatch({
+    type: 'ADD_PLAYER',
+    playerName
+  });
+});
+
+store.subscribe(() => {
+  let state = store.getState();
+  let playerNames = state.players.present.map(p => p.name);
+  localStorage.setItem('roster', JSON.stringify(playerNames));
+});
+
 function controlClock() {
   let state = store.getState();
   // need make sure the clock has the state given by state.clock

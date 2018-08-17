@@ -38,7 +38,7 @@ const mapDispatchToProps = dispatch => {
     addPlayer: playerName =>
       dispatch({
         type: 'ADD_PLAYER',
-        playerName: playerName
+        playerName
       })
   };
 };
