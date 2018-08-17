@@ -1,8 +1,10 @@
 import styled from 'styled-components';
+
 export const PlayerList = styled.ul`
   overflow: scroll;
   padding: 0;
 `;
+
 export const Player = styled.li`
   display: flex;
   align-items: center;
