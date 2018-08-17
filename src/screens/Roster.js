@@ -1,25 +1,11 @@
+import { PlayerList, Player, PlayerName } from '../components/PlayerList';
+
 import React from 'react';
 import AddPlayer from '../components/Add-player';
 import Screen from './Screen';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 import { Button } from '../components/Button';
-
-const Players = styled.ul`
-  overflow: scroll;
-  padding: 0;
-`;
-
-const Player = styled.ul`
-  display: flex;
-  /* justify-content: space-between; */
-  align-items: center;
-  line-height: 2rem;
-  border: 1px solid blue;
-  border-radius: 5px;
-  margin-bottom: 10px;
-  padding: 0;
-`;
 
 const ActiveCheckbox = styled.input.attrs({
   type: 'checkbox'
@@ -28,11 +14,7 @@ const ActiveCheckbox = styled.input.attrs({
   height: 1.8rem;
   margin: 0.2rem;
   vertical-align: center;
-`;
-
-const PlayerName = styled.h2`
-  margin: 0.2rem;
-  flex-grow: 1;
+  border-radius: 50px;
 `;
 
 export function Roster({
@@ -44,7 +26,7 @@ export function Roster({
   return (
     <Screen>
       <AddPlayer onAddPlayer={addPlayer} />
-      <Players>
+      <PlayerList>
         {players.map(p => (
           <Player key={p.id}>
             <ActiveCheckbox
@@ -57,7 +39,7 @@ export function Roster({
             </Button>
           </Player>
         ))}
-      </Players>
+      </PlayerList>
     </Screen>
   );
 }

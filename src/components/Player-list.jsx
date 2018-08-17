@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import Player from './Player';
+import Player from './ActivePlayer';
 
 const PlayerList = ({ heading, players, playerFilter }) => (
   <div>

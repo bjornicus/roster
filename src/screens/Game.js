@@ -1,24 +1,51 @@
 import React from 'react';
-import PlayerList from '../components/Player-list';
-import Undo from '../components/Undo';
-import GameClock from '../components/Game-clock';
-import Screen from './Screen';
 import styled from 'styled-components';
+import { connect } from 'react-redux';
+
+import Screen from './Screen';
+import GameClock from '../components/Game-clock';
+import Undo from '../components/Undo';
+
+import { PlayerList, Player, PlayerName } from '../components/PlayerList';
+import ActivePlayer from '../components/ActivePlayer';
+import { Button } from '../components/Button';
 
 const Header = styled.div`
   display: flex;
   justify-content: space-between;
 `;
 
-export default function() {
+function Game({ activePlayers }) {
+  let playing = activePlayers.filter(p => p.isPlaying);
+  let subs = activePlayers.filter(p => !p.isPlaying);
   return (
     <Screen>
       <Header>
         <GameClock />
         <Undo />
       </Header>
-      <PlayerList heading="Playing" playerFilter={p => p.isPlaying} />
-      <PlayerList heading="Substitutes" playerFilter={p => !p.isPlaying} />
+      <h1>PLAYING</h1>
+      <PlayerList>
+        {playing.map(p => (
+          <Player key={p.id}>
+            <ActivePlayer player={p} />
+          </Player>
+        ))}
+      </PlayerList>
+      <h1>SUBS</h1>{' '}
+      <PlayerList>
+        {subs.map(p => (
+          <Player key={p.id}>
+            <ActivePlayer player={p} />
+          </Player>
+        ))}
+      </PlayerList>
     </Screen>
   );
 }
+
+const mapStateToProps = state => {
+  return { activePlayers: state.players.present.filter(p => p.isActive) };
+};
+
+export default connect(mapStateToProps)(Game);

@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import TimeDisplay from './Time-display';
 import { Button } from './Button';
+import { PlayerName } from './PlayerList';
 
 function totalPlayingTime(player, currentTime) {
   if (player.isPlaying) {
@@ -21,7 +22,7 @@ function timeSinceLastSub(player, currentTime) {
   return currentTime - player.subOutTime;
 }
 
-const Player = ({
+const ActivePlayer = ({
   player,
   currentTime,
   onSubClick,
@@ -29,24 +30,11 @@ const Player = ({
   onToggleClock
 }) => (
   <div>
-    <Button
-      type="button"
-      className="btn btn-primary"
-      onClick={() => onSubClick(player.id)}
-    >
-      SUB
-    </Button>
+    <Button onClick={() => onSubClick(player.id)}>SUB</Button>
 
-    <span className="player-name"> {player.name} </span>
+    <PlayerName> {player.name} </PlayerName>
 
-    <Button
-      type="button"
-      className="btn"
-      onClick={() => onGoalScored(player.id)}
-    >
-      {' '}
-      {player.goals}{' '}
-    </Button>
+    <Button onClick={() => onGoalScored(player.id)}> {player.goals} </Button>
 
     {/* <ProgressBar
           now={totalPlayingPercent(player, currentTime)}
@@ -92,4 +80,4 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps,
   mergeProps
-)(Player);
+)(ActivePlayer);
