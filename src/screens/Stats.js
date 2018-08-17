@@ -1,11 +1,25 @@
 import React from 'react';
-import PlayerList from '../components/Player-list';
 import Screen from './Screen';
+import { connect } from 'react-redux';
 
-export default function() {
+import { PlayerList } from '../components/PlayerList';
+import ActivePlayer from '../components/ActivePlayer';
+
+function Stats({ activePlayers }) {
   return (
     <Screen>
-      <PlayerList heading="Stats" playerFilter={p => p.isActive} />
+      {' '}
+      <PlayerList>
+        {activePlayers.map(p => (
+          <ActivePlayer key={p.id} player={p} />
+        ))}
+      </PlayerList>
     </Screen>
   );
 }
+
+const mapStateToProps = state => {
+  return { activePlayers: state.players.present.filter(p => p.isActive) };
+};
+
+export default connect(mapStateToProps)(Stats);
