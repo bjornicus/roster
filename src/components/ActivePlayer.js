@@ -35,7 +35,7 @@ const ActivePlayer = ({
 
     <PlayerName> {player.name} </PlayerName>
 
-    <Button onClick={() => onGoalScored(player.id)}> {player.goals} </Button>
+    {/* <Button onClick={() => onGoalScored(player.id)}> {player.goals} </Button> */}
 
     {/* <ProgressBar
           now={totalPlayingPercent(player, currentTime)}
