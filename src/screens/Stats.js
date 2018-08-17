@@ -2,16 +2,21 @@ import React from 'react';
 import Screen from './Screen';
 import { connect } from 'react-redux';
 
+import Undo from '../components/Undo';
 import { PlayerList } from '../components/PlayerList';
-import ActivePlayer from '../components/ActivePlayer';
+import PlayerStats from '../components/PlayerStats';
+import { totalPlayingTime } from '../components/PlayerStats';
 
-function Stats({ activePlayers }) {
+function Stats({ activePlayers, currentTime }) {
+  activePlayers.sort((a, b) => {
+    return totalPlayingTime(a, currentTime) - totalPlayingTime(b, currentTime);
+  });
   return (
     <Screen>
-      {' '}
+      <Undo />
       <PlayerList>
         {activePlayers.map(p => (
-          <ActivePlayer key={p.id} player={p} />
+          <PlayerStats key={p.id} player={p} />
         ))}
       </PlayerList>
     </Screen>
@@ -19,7 +24,10 @@ function Stats({ activePlayers }) {
 }
 
 const mapStateToProps = state => {
-  return { activePlayers: state.players.present.filter(p => p.isActive) };
+  return {
+    activePlayers: state.players.present.filter(p => p.isActive),
+    currentTime: state.clock.currentTime
+  };
 };
 
 export default connect(mapStateToProps)(Stats);
