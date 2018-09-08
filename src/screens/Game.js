@@ -15,7 +15,7 @@ const Header = styled.div`
 `;
 
 const Column = styled.div`
-  max-width: 48%;
+  width: 48%;
 `;
 
 const Columns = styled.div`
