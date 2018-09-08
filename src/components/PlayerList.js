@@ -15,6 +15,6 @@ export const Player = styled.li`
 `;
 
 export const PlayerName = styled.h2`
-  margin: 0.2rem;
+  margin: 0.2rem 0.5rem;
   flex-grow: 1;
 `;
