@@ -5,6 +5,10 @@ import TimeDisplay from './Time-display';
 import { Button } from './Button';
 import { PlayerName, Player } from './PlayerList';
 
+const GoalCounter = styled(Button)`
+  background-color: darkorchid;
+`;
+
 export function totalPlayingTime(player, currentTime) {
   if (player.isPlaying) {
     return player.previousPlaytime + (currentTime - player.subInTime);
@@ -18,7 +22,10 @@ export function totalPlayingTime(player, currentTime) {
 
 const PlayerStats = ({ player, currentTime, onGoalScored }) => (
   <Player>
-    <Button onClick={() => onGoalScored(player.id)}> {player.goals} </Button>
+    <GoalCounter onClick={() => onGoalScored(player.id)}>
+      {' '}
+      {player.goals}{' '}
+    </GoalCounter>
     <PlayerName> {player.name} </PlayerName>
 
     {/* <ProgressBar

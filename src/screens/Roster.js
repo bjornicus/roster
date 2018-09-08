@@ -17,6 +17,11 @@ const ActiveCheckbox = styled.input.attrs({
   border-radius: 50px;
 `;
 
+const RemoveButton = styled(Button)`
+  color: #000;
+  background-color: yellow;
+`;
+
 export function Roster({
   players,
   addPlayer,
@@ -34,9 +39,9 @@ export function Roster({
               defaultChecked={p.isActive}
             />
             <PlayerName>{p.name}</PlayerName>
-            <Button color="yellow" onClick={() => removePlayer(p.id)}>
+            <RemoveButton onClick={() => removePlayer(p.id)}>
               REMOVE
-            </Button>
+            </RemoveButton>
           </Player>
         ))}
       </PlayerList>

@@ -8,6 +8,7 @@ export const Button = styled.button`
   height: ${buttonHeight};
   min-width: ${buttonHeight};
   background-color: ${props => props.color || '#388659'};
+  color: #fff;
 `;
 
 export default Button;
