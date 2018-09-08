@@ -13,7 +13,7 @@ function formatTime(time) {
   time = time % 60;
   s = Math.floor(time);
 
-  newTime = pad(m, 2) + ':' + pad(s, 2);
+  newTime = m + ':' + pad(s, 2);
   return newTime;
 }
 
