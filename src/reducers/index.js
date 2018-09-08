@@ -8,7 +8,7 @@ function playerReducer(state, action) {
         id: state.id,
         name: action.playerName,
         isPlaying: false,
-        isActive: false,
+        isActive: true,
         subInTime: 0,
         subOutTime: 0,
         previousPlaytime: 0,
