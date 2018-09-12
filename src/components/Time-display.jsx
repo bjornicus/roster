@@ -17,6 +17,6 @@ function formatTime(time) {
   return newTime;
 }
 
-export default ({ time, clockStyle }) => {
+export default ({ time, clockStyle }) => { // TODO need fixed width font
   return <label className={'clock ' + clockStyle}>{formatTime(time)}</label>;
 };

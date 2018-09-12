@@ -86,10 +86,8 @@ function clock(state = { currentTime: 0, isRunning: false }, action) {
   }
 }
 
-let players = undoable(playersReducer, {
+export let players = undoable(playersReducer, {
   limit: 10,
-  // I'd like to scope undo to just sub and add player, but the filter doesn't seem to work
-  // https://github.com/omnidan/redux-undo/issues/106
   filter: includeAction(['SUB_PLAYER', 'GOAL'])
 });
 

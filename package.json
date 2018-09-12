@@ -1,7 +1,8 @@
 {
   "name": "fair-play",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
+  "homepage": "./",
   "dependencies": {
     "react": "^16.4.2",
     "react-dom": "^16.4.2",
@@ -10,7 +11,7 @@
     "react-swipeable": "^4.3.0",
     "react-swipeable-views": "^0.12.16",
     "redux": "^4.0.0",
-    "redux-undo": "^0.6.1",
+    "redux-undo": "^1.0.0-beta9-9-7",
     "styled-components": "^3.4.2"
   },
   "scripts": {
